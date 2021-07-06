@@ -1,0 +1,12 @@
+{
+    "PAGEROUTES": {
+        "HOMEPAGE": "/",
+        "PLASTICS": "/Plastics",
+        "CORRUGATED": "/Corrugated",
+        "TRAYS": "/Trays",
+        "BOXES": "/Boxes",
+        "MISC": "/Misc",
+        "SELLERLOGIN": "/SellerLogin",
+        "SELLERSIGNUP": "/SellerLogin/Signup"
+    }
+}

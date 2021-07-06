@@ -1,0 +1,13 @@
+.navigation-header-item {
+    color: white !important;
+    margin-left:500px;
+}
+
+.nav-bar-item {
+    margin-left: 115px !important;
+    color: white !important;
+}
+
+.nav-bar-item:hover {
+    color:rgb(213, 211, 220) !important
+}
