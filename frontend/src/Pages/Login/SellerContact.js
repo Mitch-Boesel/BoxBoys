@@ -28,7 +28,7 @@ export default class SellerContact extends Component {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type='date' onChange={inputChange('primaryDob')} value={values.primaryDob} />
+                        <Form.Control type='date' onChange={inputChange('contactDob')} value={values.contactDob} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Check type='checkbox' onChange={handleCheckbox('owner')} checked={values.owner} label="Owner or Company Representitive?" />

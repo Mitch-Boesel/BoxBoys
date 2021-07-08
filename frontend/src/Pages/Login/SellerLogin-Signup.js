@@ -24,7 +24,7 @@ class SellerLoginSignup extends React.Component {
         creationDate: '',
         contactFirstname: '',
         contactLastname: '',
-        primaryDob: '',
+        contactDob: '',
         idType: '',
         idFront: '',
         idBack: '',
@@ -64,15 +64,6 @@ class SellerLoginSignup extends React.Component {
         this.setState({
             [input]: e.target.checked
         });
-        /*
-        const current = this.state[input];
-        if (current) {
-            this.setState({ [input]: false })
-        }
-        else {
-            this.setState({ [input]: true })
-        }
-        */
     }
     render() {
         const { step } = this.state;
@@ -89,7 +80,7 @@ class SellerLoginSignup extends React.Component {
             creationDate,
             contactFirstname,
             contactLastname,
-            primaryDob,
+            contactDob,
             idType,
             idFront,
             idBack,
@@ -115,7 +106,7 @@ class SellerLoginSignup extends React.Component {
             creationDate,
             contactFirstname,
             contactLastname,
-            primaryDob,
+            contactDob,
             idType,
             idFront,
             idBack,
@@ -163,7 +154,6 @@ class SellerLoginSignup extends React.Component {
                     <Trademarks
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
-                        inputChange={this.inputChange}
                         handleCheckbox={this.handleCheckbox}
                         values={values}
                     />

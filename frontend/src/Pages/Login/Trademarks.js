@@ -13,7 +13,7 @@ export default class Trademarks extends Component {
     };
 
     render() {
-        const { values, inputChange, handleCheckbox } = this.props;
+        const { values, handleCheckbox } = this.props;
         return (
             <div>
                 <h3>Products</h3>
