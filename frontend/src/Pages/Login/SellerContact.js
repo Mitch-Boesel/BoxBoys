@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Check } from 'react-bootstrap';
+import { Form, Button, FormControl } from 'react-bootstrap';
 
 export default class SellerContact extends Component {
     continue = e => {
@@ -13,6 +13,7 @@ export default class SellerContact extends Component {
     };
 
     render() {
+        debugger;
         const { values, inputChange, handleCheckbox } = this.props;
         return (
             <div>
@@ -20,11 +21,7 @@ export default class SellerContact extends Component {
                 <Form>
                     <Form.Group>
                         <Form.Label>Primary Contact Person (First, Last)</Form.Label>
-                        <Form.Control type='text' onChange={inputChange('primaryContact')} value={values.primaryContact} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Contact Email</Form.Label>
-                        <Form.Control type='email' placeholder='name@example.com' onChange={inputChange('email')} value={values.email} />
+                        <Form.Control type='text' onChange={inputChange('contactName')} value={values.contactName} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Date of Birth</Form.Label>
@@ -32,6 +29,18 @@ export default class SellerContact extends Component {
                     </Form.Group>
                     <Form.Group>
                         <Form.Check type='checkbox' onChange={handleCheckbox('owner')} checked={values.owner} label="Owner or Company Representitive?" />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Phone Number</Form.Label>
+                        <Form.Control type='text' placeholder='111-111-1111' onChange={inputChange('phone')} value={values.phone} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Account Email</Form.Label>
+                        <Form.Control type='email' placeholder='name@example.com' onChange={inputChange('email')} value={values.email} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Account Password</Form.Label>
+                        <Form.Control type="password" placeholder='Password' onChange={inputChange('password')} />
                     </Form.Group>
                 </Form>
 

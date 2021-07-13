@@ -5,10 +5,13 @@ using System.Threading.Tasks;
 
 namespace loginservice.Controllers
 {
-    public class SignupParams
+    public class SellerSignupParams
     {
         public string businessType { get; }
         public string address { get; }
+        public string city { get;}
+        public string state { get;}
+        public string zipcode { get;}
         public string phone { get; }
         public string email { get; }
         public int ein { get; }
@@ -27,22 +30,25 @@ namespace loginservice.Controllers
         public string password { get;}
         public string bankInstituion { get;}
         public string bankCountry { get;}
-        public string bankAccountholderName { get;}
+        public string bankHolderName { get;}
         public int bankRoutingNum { get;}
         public int bankAccNum { get;}
 
-        public SignupParams(Dictionary<string,string> pairs)
+        public SellerSignupParams(Dictionary<string,string> pairs)
         {
             this.address = pairs["address"];
+            this.city = pairs["city"];
+            this.state = pairs["state"];
+            this.zipcode = pairs["zipcode"];
             this.bankAccNum = int.Parse(pairs["bankAccNum"]);
-            this.bankAccountholderName = pairs["bankAccountholderName"];
+            this.bankHolderName = pairs["bankHoldername"];
             this.bankCountry = pairs["bankCountry"];
-            this.bankInstituion = pairs["bankInstituion"];
-            this.bankRoutingNum = int.Parse(pairs["bankRoutingNum"]);
+            this.bankInstituion = pairs["bankInstitution"];
+            this.bankRoutingNum = int.Parse(pairs["bankRoutingnum"]);
             this.businessType = pairs["businessType"];
             this.contactDob = DateTime.Parse(pairs["contactDob"]);
-            this.contactFirstName = pairs["contactFirstName"];
-            this.contactLastName = pairs["contactLastName"];
+            this.contactFirstName = pairs["contactName"];
+            //this.contactLastName = pairs["contactLastname"];  // Create somekind of split funtion to first/last
             this.creationDate = DateTime.Now;
             this.ein = int.Parse(pairs["ein"]);
             this.email = pairs["email"];
@@ -50,7 +56,7 @@ namespace loginservice.Controllers
             this.idFront = new byte[1]; // FIX THIS EVENTUALLY
             this.idType = pairs["idType"];
             this.manufacturer = bool.Parse(pairs["manufacturer"]);
-            this.ownerOrRep = bool.Parse(pairs["ownerOrRep"]);
+            this.ownerOrRep = bool.Parse(pairs["owner"]);
             this.password = pairs["password"];
             this.phone = pairs["phone"];
             this.trademark = bool.Parse(pairs["trademark"]);

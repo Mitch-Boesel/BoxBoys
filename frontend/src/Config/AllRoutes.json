@@ -8,5 +8,9 @@
         "MISC": "/Misc",
         "SELLERLOGIN": "/SellerLogin",
         "SELLERSIGNUP": "/SellerLogin/Signup"
+    },
+    "BACKENDROUTES": {
+        "BASEURL": "https://localhost:5001/",
+        "SELLERSIGNUP": "api/mcc/newaccount/sellersignup"
     }
 }

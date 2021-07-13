@@ -4,6 +4,7 @@ import SellerContact from './SellerContact';
 import BankInfo from './BankInfo';
 import Trademarks from './Trademarks'
 import SellerVerification from './SellerVerification'
+import Routes from '../../Config/AllRoutes.json';
 
 class SellerLoginSignup extends React.Component {
     state = {
@@ -22,14 +23,12 @@ class SellerLoginSignup extends React.Component {
         trademark: false,
         verificationDoc: '',
         creationDate: '',
-        contactFirstname: '',
-        contactLastname: '',
+        contactName: '',
         contactDob: '',
         idType: '',
         idFront: '',
         idBack: '',
         owner: false,
-        primaryEmail: '',
         password: '',
         bankInstitution: '',
         bankCountry: '',
@@ -66,10 +65,16 @@ class SellerLoginSignup extends React.Component {
         });
     }
     render() {
+        //  debugger;
+        const BACKENDROUTES = Routes.BACKENDROUTES
+
         const { step } = this.state;
         const { name,
             businessType,
             address,
+            city,
+            state,
+            zipcode,
             phone,
             email,
             ein,
@@ -77,15 +82,12 @@ class SellerLoginSignup extends React.Component {
             manufacturer,
             trademark,
             verificationDoc,
-            creationDate,
-            contactFirstname,
-            contactLastname,
+            contactName,
             contactDob,
             idType,
             idFront,
             idBack,
             owner,
-            primaryEmail,
             password,
             bankInstitution,
             bankCountry,
@@ -96,6 +98,9 @@ class SellerLoginSignup extends React.Component {
             name,
             businessType,
             address,
+            city,
+            state,
+            zipcode,
             phone,
             email,
             ein,
@@ -103,15 +108,12 @@ class SellerLoginSignup extends React.Component {
             manufacturer,
             trademark,
             verificationDoc,
-            creationDate,
-            contactFirstname,
-            contactLastname,
+            contactName,
             contactDob,
             idType,
             idFront,
             idBack,
             owner,
-            primaryEmail,
             password,
             bankInstitution,
             bankCountry,
@@ -120,6 +122,7 @@ class SellerLoginSignup extends React.Component {
             bankAccnum
         };
 
+        values.businessType = "Private";
         switch (step) {
             case 1:
                 return (
@@ -165,6 +168,7 @@ class SellerLoginSignup extends React.Component {
                         prevStep={this.prevStep}
                         inputChange={this.inputChange}
                         values={values}
+                        backendRoutes={BACKENDROUTES}
                     />
                 )
         }

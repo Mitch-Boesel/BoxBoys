@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Pageroutes from './Config/pageroutes.json';
+import Routes from './Config/AllRoutes.json';
 
 import HomePage from './Pages/Home/Home';
 import Plastics from './Pages/Home/Plastics';
@@ -14,7 +14,7 @@ import SellerLogin from './Pages/Login/SellerLogin';
 
 
 function App() {
-  const PAGEROUTES = Pageroutes.PAGEROUTES;
+  const PAGEROUTES = Routes.PAGEROUTES;
   return (
     <React.Fragment>
       <Router>
