@@ -4,7 +4,7 @@ import SellerContact from './SellerContact';
 import BankInfo from './BankInfo';
 import Trademarks from './Trademarks'
 import SellerVerification from './SellerVerification'
-import Routes from '../../Config/AllRoutes.json';
+//import Routes from '../../Config/AllRoutes.json';
 
 class SellerLoginSignup extends React.Component {
     state = {
@@ -13,7 +13,7 @@ class SellerLoginSignup extends React.Component {
         businessType: '',
         address: '',
         city: '',
-        state: '',
+        state: 'ak',
         zipcode: '',
         phone: '',
         email: '',
@@ -34,7 +34,8 @@ class SellerLoginSignup extends React.Component {
         bankCountry: '',
         bankHoldername: '',
         bankRoutingnum: 0,
-        bankAccnum: 0
+        bankAccnum: 0,
+        validate: this.props.validate,
     };
 
     nextStep = () => {
@@ -66,7 +67,7 @@ class SellerLoginSignup extends React.Component {
     }
     render() {
         //  debugger;
-        const BACKENDROUTES = Routes.BACKENDROUTES
+        const BACKENDROUTES = this.props.Routes
 
         const { step } = this.state;
         const { name,
@@ -93,7 +94,8 @@ class SellerLoginSignup extends React.Component {
             bankCountry,
             bankHoldername,
             bankRoutingnum,
-            bankAccnum } = this.state;
+            bankAccnum,
+            validate } = this.state;
         const values = {
             name,
             businessType,
@@ -119,7 +121,8 @@ class SellerLoginSignup extends React.Component {
             bankCountry,
             bankHoldername,
             bankRoutingnum,
-            bankAccnum
+            bankAccnum,
+            validate
         };
 
         values.businessType = "Private";

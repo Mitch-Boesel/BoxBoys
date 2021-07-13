@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Routes from './Config/AllRoutes.json';
+import config from './Config/config.json';
 
 import HomePage from './Pages/Home/Home';
 import Plastics from './Pages/Home/Plastics';
@@ -14,7 +14,10 @@ import SellerLogin from './Pages/Login/SellerLogin';
 
 
 function App() {
-  const PAGEROUTES = Routes.PAGEROUTES;
+  const PAGEROUTES = config.PAGEROUTES;
+  const BACKENDROUTES = config.BACKENDROUTES;
+  const VALIDATE = config.VALIDATE
+  debugger;
   return (
     <React.Fragment>
       <Router>
@@ -26,7 +29,7 @@ function App() {
           <Route path={PAGEROUTES.BOXES} component={Boxes} />
           <Route path={PAGEROUTES.MISC} component={Misc} />
           <Route path={PAGEROUTES.SELLERLOGIN} render={(props) => (
-            <SellerLogin {...props} Routes={PAGEROUTES} />)}
+            <SellerLogin {...props} pageroutes={PAGEROUTES} backendpoints={BACKENDROUTES} validate={VALIDATE} />)}
           />
           <Route component={NoMatch} />
 

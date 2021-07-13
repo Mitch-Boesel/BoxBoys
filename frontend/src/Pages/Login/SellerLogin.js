@@ -7,13 +7,20 @@ import SellerLoginLogin from './SellerLogin-Login';
 
 class SellerLogin extends React.Component {
     render() {
+        debugger;
         return (
             <Router>
                 <div className="login-wrapper">
                     <div className="login-inner">
                         <Switch>
-                            <Route exact path={this.props.Routes.SELLERLOGIN} component={SellerLoginLogin}></Route>
-                            <Route path={this.props.Routes.SELLERSIGNUP} component={SellerLoginSignup}></Route>
+
+                            <Route exact path={this.props.pageroutes.SELLERLOGIN} render={(props) => (
+                                <SellerLoginLogin backendpoints={this.props.backendpoints} />
+                            )} />
+                            <Route exact path={this.props.pageroutes.SELLERSIGNUP} render={(props) => (
+                                <SellerLoginSignup backendpoints={this.props.backendpoints} validate={this.props.validate} />
+                            )} />
+
                         </Switch>
                     </div>
                 </div>
@@ -22,5 +29,8 @@ class SellerLogin extends React.Component {
         )
     }
 }
-
+/*
+                            <Route exact path={this.props.pageroutes.SELLERLOGIN} component={SellerLoginLogin}></Route>
+                            <Route path={this.props.pageroutes.SELLERSIGNUP} component={SellerLoginSignup}></Route>
+                            */
 export default SellerLogin;
