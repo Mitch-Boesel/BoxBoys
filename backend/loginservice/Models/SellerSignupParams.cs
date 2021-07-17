@@ -8,6 +8,7 @@ namespace loginservice.Controllers
     public class SellerSignupParams
     {
         public string businessType { get; }
+        public string name { get; }
         public string address { get; }
         public string city { get;}
         public string state { get;}
@@ -33,9 +34,14 @@ namespace loginservice.Controllers
         public string bankHolderName { get;}
         public int bankRoutingNum { get;}
         public int bankAccNum { get;}
+        public int sellerId { get; set; }
+        public int contactId { get; set; }
+        public int bankId { get; set; }
+        public int passwordId { get; set; }
 
         public SellerSignupParams(Dictionary<string,string> pairs)
         {
+            this.name = pairs["name"];
             this.address = pairs["address"];
             this.city = pairs["city"];
             this.state = pairs["state"];
@@ -47,8 +53,8 @@ namespace loginservice.Controllers
             this.bankRoutingNum = int.Parse(pairs["bankRoutingnum"]);
             this.businessType = pairs["businessType"];
             this.contactDob = DateTime.Parse(pairs["contactDob"]);
-            this.contactFirstName = pairs["contactName"];
-            //this.contactLastName = pairs["contactLastname"];  // Create somekind of split funtion to first/last
+            this.contactFirstName = pairs["contactFirstname"];
+            this.contactLastName = pairs["contactLastname"];  // Create somekind of split funtion to first/last
             this.creationDate = DateTime.Now;
             this.ein = int.Parse(pairs["ein"]);
             this.email = pairs["email"];

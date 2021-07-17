@@ -1,4 +1,5 @@
 ﻿using loginservice.Models;
+using loginservice.PostgresQueries;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,14 +21,18 @@ namespace loginservice.Controllers
     {
 
         public readonly PgConnection pgConnection;
-        public readonly DBAuthTables authTables;
+        public readonly DBTables dbTables;
         public readonly ILogger<SignupController> logger;
+        public readonly ErrorMessages eMessages;
+        public readonly PrimaryKeys primaryKeys;
 
-        public SignupController(PgConnection pg, DBAuthTables dBAuth, ILogger<SignupController> ilogger)
+        public SignupController(PgConnection pg, DBTables dBAuth, ILogger<SignupController> ilogger, ErrorMessages errorMessages, PrimaryKeys pks)
         {
             this.pgConnection = pg;
-            this.authTables = dBAuth;
+            this.dbTables = dBAuth;
             this.logger = ilogger;
+            this.eMessages = errorMessages;
+            this.primaryKeys = pks;
         }
 
         [HttpPost("sellersignup")]
@@ -40,7 +45,30 @@ namespace loginservice.Controllers
             try
             {
                 var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(d);
-                var signupParams = new SellerSignupParams(dataDict);
+                var p = new SellerSignupParams(dataDict);
+
+                var sellerObj = new NextAvailableId("seller", pgConnection, dbTables, primaryKeys, eMessages.NextId);
+                p.sellerId = int.Parse(sellerObj.resultJson);
+
+                var contactObj = new NextAvailableId("contact", pgConnection, dbTables, primaryKeys, eMessages.NextId);
+                p.contactId = int.Parse(contactObj.resultJson);
+
+                var bankObj = new NextAvailableId("bank", pgConnection, dbTables, primaryKeys, eMessages.NextId);
+                p.bankId = int.Parse(contactObj.resultJson);
+
+                var passwordObj = new NextAvailableId("spassword", pgConnection, dbTables, primaryKeys, eMessages.NextId);
+                p.passwordId = int.Parse(contactObj.resultJson);
+
+                var addSeller = new AddSellerAccount(pgConnection,eMessages.AddSellerAccount,p,dbTables);
+                return addSeller.resultJson;
+                //var queryFactory = new PgQueryFactory(this.pgConnection, this.dbTables, this.eMessages);
+                //var result = queryFactory.NewSellerAccount(signupParams);
+                //if (result == this.eMessages.AddSellerAccount)
+                //{
+                //    this.logger.LogError(result);
+                //}
+                //return result;
+
             }
             catch(Exception e)
             {
@@ -49,7 +77,6 @@ namespace loginservice.Controllers
                 return "Seller Account Creation Was UNSUCCESSFUL";
             }
 
-            return String.Empty;
         }
         /*
         [HttpPost]

@@ -22,7 +22,7 @@ namespace loginservice
         }
 
         public IConfiguration Configuration { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -31,9 +31,13 @@ namespace loginservice
 
             services.AddControllers().AddNewtonsoftJson();
             var pgConnection = Configuration.GetSection("PgConnection").Get<PgConnection>();
-            var dbTables = Configuration.GetSection("DBAuthTables").Get<DBAuthTables>();
+            var dbTables = Configuration.GetSection("DBTables").Get<DBTables>();
+            var eMessages = Configuration.GetSection("ErrorMessages").Get<ErrorMessages>();
+            var primaryKeys = Configuration.GetSection("PrimaryKeys").Get<PrimaryKeys>();
             services.AddSingleton<PgConnection>(pgConnection);
-            services.AddSingleton<DBAuthTables>(dbTables);
+            services.AddSingleton<DBTables>(dbTables);
+            services.AddSingleton<ErrorMessages>(eMessages);
+            services.AddSingleton<PrimaryKeys>(primaryKeys);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

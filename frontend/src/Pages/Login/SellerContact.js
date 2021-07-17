@@ -5,7 +5,6 @@ import './error.css';
 export default class SellerContact extends Component {
     continue = values => e => {
         e.preventDefault();
-        debugger;
         if (this.validate(values))
             this.props.nextStep();
         else
@@ -15,9 +14,10 @@ export default class SellerContact extends Component {
     validate = values => {
         const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
         if (values.validate == true)
-            return ((values.contactName.length != 0 &&
+            return ((values.contactFirstname.length != 0 &&
+                values.contactLastname.length != 0 &&
                 values.contactDob.length != 0 &&
-                values.phone.length > 10 &&
+                values.phone.length >= 10 &&
                 values.phone.length <= 15 &&
                 validEmailRegex.test(values.email) &&
                 values.password.length >= 8) ? true : false);
@@ -38,9 +38,14 @@ export default class SellerContact extends Component {
                 <h3>Seller Information</h3>
                 <Form>
                     <Form.Group>
-                        <Form.Label>Primary Contact Person (First, Last)</Form.Label>
-                        <Form.Control type='text' onChange={inputChange('contactName')} value={values.contactName} />
-                        {values.contactName.length == 0 && <span className='errorMessage'>contact name can't be blank</span>}
+                        <Form.Label>Primary Contact Person First Name</Form.Label>
+                        <Form.Control type='text' onChange={inputChange('contactFirstname')} value={values.contactFirstname} />
+                        {values.contactFirstname.length == 0 && <span className='errorMessage'>contact first name can't be blank</span>}
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Primary Contact Person Last Name</Form.Label>
+                        <Form.Control type='text' onChange={inputChange('contactLastname')} value={values.contactLastname} />
+                        {values.contactLastname.length == 0 && <span className='errorMessage'>contact last name can't be blank</span>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Date of Birth</Form.Label>

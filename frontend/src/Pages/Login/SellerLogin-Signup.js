@@ -23,7 +23,8 @@ class SellerLoginSignup extends React.Component {
         trademark: false,
         verificationDoc: '',
         creationDate: '',
-        contactName: '',
+        contactFirstname: '',
+        contactLastname: '',
         contactDob: '',
         idType: '',
         idFront: '',
@@ -67,7 +68,7 @@ class SellerLoginSignup extends React.Component {
     }
     render() {
         //  debugger;
-        const BACKENDROUTES = this.props.Routes
+        const BACKENDROUTES = this.props.backendpoints
 
         const { step } = this.state;
         const { name,
@@ -83,7 +84,8 @@ class SellerLoginSignup extends React.Component {
             manufacturer,
             trademark,
             verificationDoc,
-            contactName,
+            contactFirstname,
+            contactLastname,
             contactDob,
             idType,
             idFront,
@@ -110,7 +112,8 @@ class SellerLoginSignup extends React.Component {
             manufacturer,
             trademark,
             verificationDoc,
-            contactName,
+            contactFirstname,
+            contactLastname,
             contactDob,
             idType,
             idFront,

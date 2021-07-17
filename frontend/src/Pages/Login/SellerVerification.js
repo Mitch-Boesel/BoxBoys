@@ -84,7 +84,8 @@ export default class SellerVerification extends Component {
             "manufacturer": values.manufacturer.toString(),
             "trademark": values.trademark.toString(),
             "verificationDoc": values.verificationDoc.toString(),
-            "contactName": values.contactName.toString(),
+            "contactFirstname": values.contactFirstname.toString(),
+            "contactLastname": values.contactLastname.toString(),
             "contactDob": values.contactDob.toString(),
             "idType": values.idType.toString(),
             "idFront": values.idFront.toString(),
@@ -108,6 +109,7 @@ export default class SellerVerification extends Component {
 
     render() {
         const { values, backendRoutes } = this.props;
+        debugger;
         return (
             <div>
                 <h3>Verification</h3>
@@ -158,7 +160,13 @@ export default class SellerVerification extends Component {
                         <Form.Label column sm="2">
                             Primary Contact Firstname:
                         </Form.Label>
-                        <Form.Control plaintext readOnly value={values.contactName} />
+                        <Form.Control plaintext readOnly value={values.contactFirstname} />
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="2">
+                            Primary Contact Lastname:
+                        </Form.Label>
+                        <Form.Control plaintext readOnly value={values.contactLastname} />
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">
