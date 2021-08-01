@@ -9,5 +9,6 @@ namespace loginservice.Models
     {
         public string AddSellerAccount { get; set; }
         public string NextId { get; set; }
+        public string SellerLogin { get; set; }
     }
 }

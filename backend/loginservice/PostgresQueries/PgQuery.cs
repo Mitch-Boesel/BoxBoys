@@ -10,59 +10,55 @@ namespace loginservice.PostgresQueries
 {
     public abstract class PgQuery
     {
-        public string resultJson { get; set; }
-        public PgConnection pgConnection { get; }
-        public string errorMessage { get; set; }
+        public string ResultJson { get; set; }
+        public PgConnection PgConnection { get; }
+        public string ErrorMessage { get; set; }
+
+        public bool Exception { get; set; }
 
         public PgQuery(PgConnection pg, string eMessage)
         {
-            this.pgConnection = pg;
-            this.errorMessage = eMessage;
+            this.PgConnection = pg;
+            this.ErrorMessage = eMessage;
+            this.Exception = false;
         }
-        public string ExecuteQuery()
-        {
-            var sqlstr = BuildSqlString();
-            using (var connection = new NpgsqlConnection(this.pgConnection.ConnectionString()))
-            {
-                string jsonString = string.Empty;
-                connection.Open();
-                var trans = connection.BeginTransaction();
-                using (var cmd = new NpgsqlCommand(sqlstr,connection))
-                {
-                    cmd.Transaction = trans;
-                    try
-                    {
-                        var reader = cmd.ExecuteReader();
-                        //var numRows = cmd.ExecuteNonQuery();
-                        jsonString = ExtractData(ref reader);
-                        reader.Close();
-                        trans.Commit();
-                    }
-                    catch (NpgsqlException ex)
-                    {
-                        Console.WriteLine(ex.Message.ToString());
-                        Console.WriteLine("SQL Error - " + ex.Message.ToString());  // errorMessage
-                        jsonString = "SQl Error, Request Failed!";  // errorMessage
-                        trans.Rollback();
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
+        public abstract string ExecuteQuery();
+        //{
+        //    var sqlstr = BuildSqlString();
+        //    using (var connection = new NpgsqlConnection(this.PgConnection.ConnectionString()))
+        //    {
+        //        string jsonString = string.Empty;
+        //        connection.Open();
+        //        var trans = connection.BeginTransaction();
+        //        using (var cmd = new NpgsqlCommand(sqlstr,connection))
+        //        {
+        //            cmd.Transaction = trans;
+        //            try
+        //            {
+        //                var reader = cmd.ExecuteReader();
+        //                //var numRows = cmd.ExecuteNonQuery();
+        //                jsonString = ExtractData(ref reader);
+        //                reader.Close();
+        //                trans.Commit();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                this.Exception = true;
+        //                Console.WriteLine(ex.Message.ToString());
+        //                jsonString = "Exception Thrown, Request Failed!";  // errorMessage
+        //                trans.Rollback();
+        //            }
+        //            finally
+        //            {
+        //                connection.Close();
+        //            }
 
-                    return jsonString;
-                }
-            }
-        }
+        //            return jsonString;
+        //        }
+        //    }
+        //}
 
         public abstract string BuildSqlString();
-
-        /// <summary>
-        /// Should use ToJson() method
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
-        public abstract string ExtractData(ref NpgsqlDataReader reader);
 
         public string ToJson(object dictionary)
         {

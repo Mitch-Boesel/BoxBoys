@@ -32,7 +32,7 @@ export default class BusinessInfo extends Component {
                 <Form>
                     <Form.Group controlId='sellersignup-businesstype'>
                         <Form.Label>Business Type:</Form.Label>
-                        <Form.Control as='select' onChange={inputChange('businessType')} value={values.businessType}>
+                        <Form.Control as='select' onChange={inputChange('businessType')} value={values.businessType} defaultValue="Private">
                             <option>Private</option>
                             <option>Public</option>
                         </Form.Control>

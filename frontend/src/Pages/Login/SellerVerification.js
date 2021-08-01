@@ -17,59 +17,15 @@ export default class SellerVerification extends Component {
             body: bodyData
         }
         const response = await fetch(postUrl, requestOptions);
-        const data = await response.json();
         if (response.status == 400) {
-            window.alert(data.errors + "ERROR")
+            window.alert("Account Creation Failed")
         }
-        /*
-        const bodyData = JSON.stringify(values);
-        const response = await axios.post(postUrl, bodyData, {
-            headers: { 'Content-Type': 'application/json' }//, 'Content-Length': JSON.stringify(bodyData).length }
-        });
-        debugger;
-        if (response.status == 200) {
-            alert(response.data);
-            console.log(response.data);
+        else if (response.status == 200) {
+            window.alert("Account Creation Successful!");
         }
-        else {
-            alert(response.data);
-        }
-*/
     }
 
     buildPostDataJson(values) {
-        /*
-        const today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-        var todayString = mm + '/' + dd + '/' + yyyy;
-        
-            name,
-            businessType,
-            address,
-            city,
-            state,
-            zipcode,
-            phone,
-            email,
-            ein,
-            upc,
-            manufacturer,
-            trademark,
-            verificationDoc,
-            contactName,
-            contactDob,
-            idType,
-            idFront,
-            idBack,
-            owner,
-            password,
-            bankInstitution,
-            bankCountry,
-            bankHoldername,
-            bankRoutingnum,
-            bankAccnum*/
         const json = {
             "name": values.name.toString(),
             "businessType": values.businessType.toString(),
@@ -109,7 +65,6 @@ export default class SellerVerification extends Component {
 
     render() {
         const { values, backendRoutes } = this.props;
-        debugger;
         return (
             <div>
                 <h3>Verification</h3>

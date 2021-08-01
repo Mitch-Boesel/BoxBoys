@@ -15,7 +15,7 @@ namespace loginservice.Controllers
         public string zipcode { get;}
         public string phone { get; }
         public string email { get; }
-        public int ein { get; }
+        public long ein { get; }
         public bool upc { get; }
         public bool manufacturer { get; }
         public bool trademark { get; }
@@ -32,8 +32,8 @@ namespace loginservice.Controllers
         public string bankInstituion { get;}
         public string bankCountry { get;}
         public string bankHolderName { get;}
-        public int bankRoutingNum { get;}
-        public int bankAccNum { get;}
+        public long bankRoutingNum { get;}
+        public long bankAccNum { get;}
         public int sellerId { get; set; }
         public int contactId { get; set; }
         public int bankId { get; set; }
@@ -46,17 +46,17 @@ namespace loginservice.Controllers
             this.city = pairs["city"];
             this.state = pairs["state"];
             this.zipcode = pairs["zipcode"];
-            this.bankAccNum = int.Parse(pairs["bankAccNum"]);
+            this.bankAccNum = long.Parse(pairs["bankAccNum"]);
             this.bankHolderName = pairs["bankHoldername"];
             this.bankCountry = pairs["bankCountry"];
             this.bankInstituion = pairs["bankInstitution"];
-            this.bankRoutingNum = int.Parse(pairs["bankRoutingnum"]);
+            this.bankRoutingNum = long.Parse(pairs["bankRoutingnum"]);
             this.businessType = pairs["businessType"];
             this.contactDob = DateTime.Parse(pairs["contactDob"]);
             this.contactFirstName = pairs["contactFirstname"];
             this.contactLastName = pairs["contactLastname"];  // Create somekind of split funtion to first/last
             this.creationDate = DateTime.Now;
-            this.ein = int.Parse(pairs["ein"]);
+            this.ein = long.Parse(pairs["ein"]);
             this.email = pairs["email"];
             this.idBack = new byte[1];  // FIX THIS EVENTUALLY
             this.idFront = new byte[1]; // FIX THIS EVENTUALLY

@@ -17,7 +17,6 @@ function App() {
   const PAGEROUTES = config.PAGEROUTES;
   const BACKENDROUTES = config.BACKENDROUTES;
   const VALIDATE = config.VALIDATE
-  debugger;
   return (
     <React.Fragment>
       <Router>

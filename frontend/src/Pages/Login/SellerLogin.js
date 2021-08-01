@@ -7,7 +7,6 @@ import SellerLoginLogin from './SellerLogin-Login';
 
 class SellerLogin extends React.Component {
     render() {
-        debugger;
         return (
             <Router>
                 <div className="login-wrapper">

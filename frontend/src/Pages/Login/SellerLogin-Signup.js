@@ -128,7 +128,6 @@ class SellerLoginSignup extends React.Component {
             validate
         };
 
-        values.businessType = "Private";
         switch (step) {
             case 1:
                 return (
