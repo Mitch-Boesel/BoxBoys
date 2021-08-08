@@ -1,0 +1,19 @@
+{
+    "PAGEROUTES": {
+        "HOMEPAGE": "/",
+        "PLASTICS": "/Plastics",
+        "CORRUGATED": "/Corrugated",
+        "TRAYS": "/Trays",
+        "BOXES": "/Boxes",
+        "MISC": "/Misc",
+        "SELLERLOGIN": "/SellerLogin",
+        "SELLERSIGNUP": "/SellerLogin/Signup",
+        "SELLERACCOUNT": "/SellerAccount"
+    },
+    "BACKENDROUTES": {
+        "BASEURL": "https://localhost:5001/",
+        "SELLERSIGNUP": "api/mcc/accounts/sellersignup",
+        "SELLERLOGIN": "api/mcc/accounts/sellerlogin"
+    },
+    "VALIDATE": true
+}

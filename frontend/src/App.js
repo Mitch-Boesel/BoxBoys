@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Pageroutes from './Config/pageroutes.json';
+import config from './Config/config.json';
 
 import HomePage from './Pages/Home/Home';
 import Plastics from './Pages/Home/Plastics';
@@ -11,10 +11,13 @@ import Boxes from './Pages/Home/Boxes';
 import Misc from './Pages/Home/Misc';
 import NoMatch from './Pages/Home/NoMatch';
 import SellerLogin from './Pages/Login/SellerLogin';
+import SellerAccount from './Pages/SellerAccount';
 
 
 function App() {
-  const PAGEROUTES = Pageroutes.PAGEROUTES;
+  const PAGEROUTES = config.PAGEROUTES;
+  const BACKENDROUTES = config.BACKENDROUTES;
+  const VALIDATE = config.VALIDATE
   return (
     <React.Fragment>
       <Router>
@@ -26,7 +29,7 @@ function App() {
           <Route path={PAGEROUTES.BOXES} component={Boxes} />
           <Route path={PAGEROUTES.MISC} component={Misc} />
           <Route path={PAGEROUTES.SELLERLOGIN} render={(props) => (
-            <SellerLogin {...props} Routes={PAGEROUTES} />)}
+            <SellerLogin {...props} pageroutes={PAGEROUTES} backendpoints={BACKENDROUTES} validate={VALIDATE} />)}
           />
           <Route component={NoMatch} />
 

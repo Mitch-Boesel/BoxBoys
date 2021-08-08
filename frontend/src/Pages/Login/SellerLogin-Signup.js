@@ -12,7 +12,7 @@ class SellerLoginSignup extends React.Component {
         businessType: '',
         address: '',
         city: '',
-        state: '',
+        state: 'ak',
         zipcode: '',
         phone: '',
         email: '',
@@ -24,18 +24,18 @@ class SellerLoginSignup extends React.Component {
         creationDate: '',
         contactFirstname: '',
         contactLastname: '',
-        primaryDob: '',
+        contactDob: '',
         idType: '',
         idFront: '',
         idBack: '',
         owner: false,
-        primaryEmail: '',
         password: '',
         bankInstitution: '',
         bankCountry: '',
         bankHoldername: '',
         bankRoutingnum: 0,
-        bankAccnum: 0
+        bankAccnum: 0,
+        validate: this.props.validate,
     };
 
     nextStep = () => {
@@ -64,21 +64,18 @@ class SellerLoginSignup extends React.Component {
         this.setState({
             [input]: e.target.checked
         });
-        /*
-        const current = this.state[input];
-        if (current) {
-            this.setState({ [input]: false })
-        }
-        else {
-            this.setState({ [input]: true })
-        }
-        */
     }
     render() {
+        //  debugger;
+        const BACKENDROUTES = this.props.backendpoints
+
         const { step } = this.state;
         const { name,
             businessType,
             address,
+            city,
+            state,
+            zipcode,
             phone,
             email,
             ein,
@@ -86,25 +83,27 @@ class SellerLoginSignup extends React.Component {
             manufacturer,
             trademark,
             verificationDoc,
-            creationDate,
             contactFirstname,
             contactLastname,
-            primaryDob,
+            contactDob,
             idType,
             idFront,
             idBack,
             owner,
-            primaryEmail,
             password,
             bankInstitution,
             bankCountry,
             bankHoldername,
             bankRoutingnum,
-            bankAccnum } = this.state;
+            bankAccnum,
+            validate } = this.state;
         const values = {
             name,
             businessType,
             address,
+            city,
+            state,
+            zipcode,
             phone,
             email,
             ein,
@@ -112,21 +111,20 @@ class SellerLoginSignup extends React.Component {
             manufacturer,
             trademark,
             verificationDoc,
-            creationDate,
             contactFirstname,
             contactLastname,
-            primaryDob,
+            contactDob,
             idType,
             idFront,
             idBack,
             owner,
-            primaryEmail,
             password,
             bankInstitution,
             bankCountry,
             bankHoldername,
             bankRoutingnum,
-            bankAccnum
+            bankAccnum,
+            validate
         };
 
         switch (step) {
@@ -163,7 +161,6 @@ class SellerLoginSignup extends React.Component {
                     <Trademarks
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
-                        inputChange={this.inputChange}
                         handleCheckbox={this.handleCheckbox}
                         values={values}
                     />
@@ -175,6 +172,7 @@ class SellerLoginSignup extends React.Component {
                         prevStep={this.prevStep}
                         inputChange={this.inputChange}
                         values={values}
+                        backendRoutes={BACKENDROUTES}
                     />
                 )
         }

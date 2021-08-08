@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
 import { Form, Button, Col } from 'react-bootstrap';
+import './error.css';
 
 export default class BusinessInfo extends Component {
-    continue = e => {
+    continue = values => e => {
         e.preventDefault();
-        this.props.nextStep();
+        if (this.validate(values))
+            this.props.nextStep();
+        else
+            window.alert("Form is invalid, please correct errors")
     };
+
+    validate = values => {
+        if (values.validate == true)
+            return ((values.name.length != 0 &&
+                values.ein.length != 0 &&
+                values.address.length != 0 &&
+                values.city.length != 0 &&
+                values.state.length != 0 &&
+                values.zipcode.length != 0) ? true : false);
+        else
+            return true;
+    }
+
 
     render() {
         const { values, inputChange } = this.props;
@@ -15,27 +32,31 @@ export default class BusinessInfo extends Component {
                 <Form>
                     <Form.Group controlId='sellersignup-businesstype'>
                         <Form.Label>Business Type:</Form.Label>
-                        <Form.Control as='select' onChange={inputChange('businessType')} value={values.businessType}>
+                        <Form.Control as='select' onChange={inputChange('businessType')} value={values.businessType} defaultValue="Private">
                             <option>Private</option>
                             <option>Public</option>
                         </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Business Name</Form.Label>
-                        <Form.Control type='text' placeholder='XYZ Company' onChange={inputChange('name')} value={values.name} />
+                        <Form.Control type='text' onChange={inputChange('name')} value={values.name} />
+                        {values.name.length == 0 && <span className='errorMessage'>Business Name can't be blank</span>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Business Registration Number (EIN)</Form.Label>
                         <Form.Control type='text' onChange={inputChange('ein')} value={values.ein}></Form.Control>
+                        {values.ein.length == 0 && <span className='errorMessage'>EIN can't be blank</span>}
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Business Address</Form.Label>
                         <Form.Control type='address' onChange={inputChange('address')} value={values.address}></Form.Control>
+                        {values.address.length == 0 && <span className='errorMessage'>Address can't be blank</span>}
                     </Form.Group>
                     <Form.Row>
                         <Form.Group as={Col}>
                             <Form.Label>City</Form.Label>
                             <Form.Control onChange={inputChange('city')} value={values.city} />
+                            {values.city.length == 0 && <span className='errorMessage'>City can't be blank</span>}
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridState">
                             <Form.Label>State</Form.Label>
@@ -97,9 +118,10 @@ export default class BusinessInfo extends Component {
                         <Form.Group as={Col}>
                             <Form.Label>Zip</Form.Label>
                             <Form.Control onChange={inputChange('zipcode')} value={values.zipcode} />
+                            {values.zipcode.length == 0 && <span className='errorMessage'>zipcode can't be blank</span>}
                         </Form.Group>
                     </Form.Row>
-                    <Button variant="primary" onClick={this.continue}>Continue</Button>
+                    <Button variant="primary" onClick={this.continue(values)}>Continue</Button>
                 </Form>
             </div >
         )

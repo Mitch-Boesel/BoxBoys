@@ -1,10 +1,62 @@
 import React, { Component } from 'react'
 import { Form, Button, Row } from 'react-bootstrap';
+import axios from "axios";
 export default class SellerVerification extends Component {
-    continue = e => {
+    /*continue = e => {
         e.preventDefault();
         this.props.nextStep();
-    };
+    };*/
+
+    async onSubmit(backendRoutes, values) {
+        //e.preventDefault();
+        const postUrl = backendRoutes.BASEURL + backendRoutes.SELLERSIGNUP;
+        const bodyData = JSON.stringify(this.buildPostDataJson(values));
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: bodyData
+        }
+        const response = await fetch(postUrl, requestOptions);
+        if (response.status == 400) {
+            window.alert("Account Creation Failed")
+        }
+        else if (response.status == 200) {
+            window.alert("Account Creation Successful!");
+        }
+    }
+
+    buildPostDataJson(values) {
+        const json = {
+            "name": values.name.toString(),
+            "businessType": values.businessType.toString(),
+            "address": values.address.toString(),
+            "city": values.city.toString(),
+            "state": values.state.toString(),
+            "zipcode": values.zipcode.toString(),
+            "phone": values.phone.toString(),
+            "email": values.email.toString(),
+            "ein": values.ein.toString(),
+            "upc": values.upc.toString(),
+            "manufacturer": values.manufacturer.toString(),
+            "trademark": values.trademark.toString(),
+            "verificationDoc": values.verificationDoc.toString(),
+            "contactFirstname": values.contactFirstname.toString(),
+            "contactLastname": values.contactLastname.toString(),
+            "contactDob": values.contactDob.toString(),
+            "idType": values.idType.toString(),
+            "idFront": values.idFront.toString(),
+            "idBack": values.idBack.toString(),
+            "owner": values.owner.toString(),
+            "password": values.password.toString(),
+            "bankInstitution": values.bankInstitution.toString(),
+            "bankCountry": values.bankCountry.toString(),
+            "bankHoldername": values.bankHoldername.toString(),
+            "bankRoutingnum": values.bankRoutingnum.toString(),
+            "bankAccNum": values.bankAccnum.toString()
+        }
+
+        return json;
+    }
 
     back = e => {
         e.preventDefault();
@@ -12,7 +64,7 @@ export default class SellerVerification extends Component {
     };
 
     render() {
-        const { values } = this.props;
+        const { values, backendRoutes } = this.props;
         return (
             <div>
                 <h3>Verification</h3>
@@ -27,7 +79,7 @@ export default class SellerVerification extends Component {
                         <Form.Label column sm="2">
                             Business Name:
                         </Form.Label>
-                        <Form.Control plaintext readOnly value={values.businessName} />
+                        <Form.Control plaintext readOnly value={values.name} />
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">
@@ -67,7 +119,7 @@ export default class SellerVerification extends Component {
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">
-                            Primary Contact contactLastname:
+                            Primary Contact Lastname:
                         </Form.Label>
                         <Form.Control plaintext readOnly value={values.contactLastname} />
                     </Form.Group>
@@ -75,7 +127,7 @@ export default class SellerVerification extends Component {
                         <Form.Label column sm="2">
                             Primary Contact DOB:
                         </Form.Label>
-                        <Form.Control plaintext readOnly value={values.primaryDob} />
+                        <Form.Control plaintext readOnly value={values.contactDob} />
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">
@@ -133,7 +185,7 @@ export default class SellerVerification extends Component {
                     </Form.Group>
                 </Form>
                 <Button variant="secondary" onClick={this.back}>Back</Button>
-                <Button variant="primary" onClick={this.continue}>Continue</Button>
+                <Button variant="primary" onClick={() => this.onSubmit(backendRoutes, values)}>Submit</Button>
             </div>
         )
     }
