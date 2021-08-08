@@ -14,7 +14,7 @@ class SellerLogin extends React.Component {
                         <Switch>
 
                             <Route exact path={this.props.pageroutes.SELLERLOGIN} render={(props) => (
-                                <SellerLoginLogin backendpoints={this.props.backendpoints} />
+                                <SellerLoginLogin backendpoints={this.props.backendpoints} pageroutes={this.props.pageroutes} />
                             )} />
                             <Route exact path={this.props.pageroutes.SELLERSIGNUP} render={(props) => (
                                 <SellerLoginSignup backendpoints={this.props.backendpoints} validate={this.props.validate} />

@@ -11,6 +11,7 @@ import Boxes from './Pages/Home/Boxes';
 import Misc from './Pages/Home/Misc';
 import NoMatch from './Pages/Home/NoMatch';
 import SellerLogin from './Pages/Login/SellerLogin';
+import SellerAccount from './Pages/SellerAccount';
 
 
 function App() {

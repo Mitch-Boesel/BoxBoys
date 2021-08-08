@@ -4,7 +4,6 @@ import SellerContact from './SellerContact';
 import BankInfo from './BankInfo';
 import Trademarks from './Trademarks'
 import SellerVerification from './SellerVerification'
-//import Routes from '../../Config/AllRoutes.json';
 
 class SellerLoginSignup extends React.Component {
     state = {
