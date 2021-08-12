@@ -1,14 +1,14 @@
 {
     "PAGEROUTES": {
         "HOMEPAGE": "/",
-        "PLASTICS": "/Plastics",
-        "CORRUGATED": "/Corrugated",
-        "TRAYS": "/Trays",
-        "BOXES": "/Boxes",
-        "MISC": "/Misc",
-        "SELLERLOGIN": "/SellerLogin",
-        "SELLERSIGNUP": "/SellerLogin/Signup",
-        "SELLERACCOUNT": "/SellerAccount"
+        "PLASTICS": "/plastics",
+        "CORRUGATED": "/corrugated",
+        "TRAYS": "/trays",
+        "BOXES": "/boxes",
+        "MISC": "/misc",
+        "SELLERLOGIN": "/seller-login",
+        "SELLERSIGNUP": "/seller-login/signup",
+        "SELLERACCOUNT": "/seller-account"
     },
     "BACKENDROUTES": {
         "BASEURL": "https://localhost:5001/",

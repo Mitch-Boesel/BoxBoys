@@ -5,7 +5,7 @@
     text-align: left;
   }
   
-  .login-inner {
+  .sellerlogin {
     width: 450px;
     margin: auto;
     background: #ffffff;
@@ -13,4 +13,18 @@
     padding: 40px 55px 45px 55px;
     border-radius: 15px;
     transition: all .3s;
+  }
+
+.seller_header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+  .seller_submit {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .seller_field {
+    margin-bottom: 20px;
   }

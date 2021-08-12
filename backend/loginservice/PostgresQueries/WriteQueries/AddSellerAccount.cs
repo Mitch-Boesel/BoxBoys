@@ -31,7 +31,6 @@ namespace loginservice.PostgresQueries
                             $"'{P.city}'," +
                             $"'{P.state}'," +
                             $"'{P.zipcode}'," +
-                            $"'{P.phone}'," +
                             $"'{P.upc}'," +
                             $"'{P.manufacturer}'," +
                             $"'{P.trademark}'," +
@@ -48,7 +47,8 @@ namespace loginservice.PostgresQueries
                              $"'{P.idType}'," +
                              $"'{P.idFront}'," +
                              $"'{P.idBack}'," +
-                             $"'{P.email}'," +
+                             $"'{P.email.ToLower()}'," +
+                             $"'{P.phone}'," +
                              $"'{P.ownerOrRep}');";
             var bankSql = $"INSERT INTO {DbTables.BankAccounts}" +
                           $" VALUES(" +
