@@ -15,10 +15,12 @@ namespace loginservice.PostgresQueries
         public string PasswordTable { get; }
         public string MyProperty { get; set; }
         public string ID { get; set; }
-
         public bool Valid { get; }
+
+        public string BadRowsString { get; }
         public UserLogin(string userType, string email, string password, DBTables dbTables,PgConnection pg, string eMessage) :base(pg, eMessage)
         {
+            BadRowsString = "No Rows or More Than One Row Returned";
             Email = email;
             Password = password;
 
@@ -40,12 +42,15 @@ namespace loginservice.PostgresQueries
             }
 
             this.ResultJson = ExecuteQuery();
-            this.Valid = bool.Parse(this.ResultJson);
-        }
+            if (ResultJson == ExceptionJsonString || ResultJson == BadRowsString)
+                Valid = false;
+            else
+                Valid = true;
+              }
 
         public override string BuildSqlString()
         {
-            var sqlstring = "Select *" +
+            var sqlstring = "Select a.sellerid" +
                             $" From {AccountTable} a INNER JOIN {PasswordTable} p" +
                             $" ON a.{ID} = p.{ID}" +
                             $" WHERE a.email = '{Email}' AND p.password = '{Password}';";
@@ -55,9 +60,21 @@ namespace loginservice.PostgresQueries
         public override string ExtractData(ref NpgsqlDataReader reader)
         {
             if (reader.HasRows)
-                return bool.TrueString;
+            {
+                var count = 0;
+                var sellerId = string.Empty;
+                while (reader.Read())
+                {
+                    sellerId = reader.GetInt32(0).ToString();
+                    count += 1;
+                }
+                if (count != 1)
+                    return BadRowsString;
+                else
+                    return sellerId;
+            }
             else
-                return bool.FalseString;
+                return BadRowsString;
         }
     }
 }

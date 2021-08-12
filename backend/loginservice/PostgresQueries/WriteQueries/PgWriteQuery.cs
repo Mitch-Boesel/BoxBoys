@@ -37,7 +37,7 @@ namespace loginservice.PostgresQueries
                     {
                         this.Exception = true;
                         Console.WriteLine(ex.Message.ToString());
-                        jsonString = "Exception Thrown, Request Failed!";  // errorMessage
+                        jsonString = this.ExceptionJsonString;  // errorMessage
                         trans.Rollback();
                     }
                     finally

@@ -50,7 +50,15 @@ namespace loginservice.PostgresQueries
             var nextMax = 0;
             while (reader.Read())
             {
-               nextMax = reader.GetInt32(0) + 1;
+                try
+                {
+                    nextMax = reader.GetInt32(0) + 1;
+                }
+                catch (Exception e)
+                {
+                    this.NextId = 1;
+                    return 1.ToString();
+                }
             }
             this.NextId = nextMax;
             return (nextMax).ToString();

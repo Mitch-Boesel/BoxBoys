@@ -15,12 +15,14 @@ namespace loginservice.PostgresQueries
         public string ErrorMessage { get; set; }
 
         public bool Exception { get; set; }
+        public string ExceptionJsonString { get; }
 
         public PgQuery(PgConnection pg, string eMessage)
         {
             this.PgConnection = pg;
             this.ErrorMessage = eMessage;
             this.Exception = false;
+            this.ExceptionJsonString = "Exception Thrown, Request Failed!";
         }
         public abstract string ExecuteQuery();
         //{

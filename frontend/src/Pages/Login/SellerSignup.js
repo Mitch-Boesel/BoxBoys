@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BusinessInfo from './BusinessInfo';
 import SellerContact from './SellerContact';
 import BankInfo from './BankInfo';
 import Trademarks from './Trademarks'
 import SellerVerification from './SellerVerification'
+import config from '../../Config/config.json'
+import './SellerSignup.css'
 
-class SellerLoginSignup extends React.Component {
-    state = {
+
+function SellerSignup() {
+    const [data, setState] = useState({
         step: 1,
         name: '',
-        businessType: '',
+        businessType: 'Private',
         address: '',
         city: '',
         state: 'ak',
@@ -35,41 +38,36 @@ class SellerLoginSignup extends React.Component {
         bankHoldername: '',
         bankRoutingnum: 0,
         bankAccnum: 0,
-        validate: this.props.validate,
+        validate: config.VALIDATE
+        //accountCreated: false
+    });
+
+
+    const nextStep = () => {
+        const { step } = data
+        setState({ ...data, step: step + 1 })
     };
 
-    nextStep = () => {
-        const { step } = this.state;
-        this.setState({ step: step + 1 });
+    const prevStep = () => {
+        const { step } = data
+        setState({ ...data, step: step - 1 })
     };
 
-    prevStep = () => {
-        const { step } = this.state;
-        this.setState({ step: step - 1 });
+    const inputChange = input => e => {
+        setState({ ...data, [input]: e.target.value })
     };
 
-    inputChange = input => e => {
-        this.setState({
-            [input]: e.target.value
-        });
+    /*   const setAccountCreated = () => {
+           setState({ ...data, accountCreated: true })
+     }*/
+
+    const handleCountry = input => e => {
+        setState({ ...data, [input]: e })
     };
 
-    handleCountry = input => e => {
-        this.setState({
-            [input]: e
-        });
-    };
 
-    handleCheckbox = input => e => {
-        this.setState({
-            [input]: e.target.checked
-        });
-    }
-    render() {
-        //  debugger;
-        const BACKENDROUTES = this.props.backendpoints
-
-        const { step } = this.state;
+    const switchToPage = () => {
+        const { step } = data;
         const { name,
             businessType,
             address,
@@ -96,7 +94,9 @@ class SellerLoginSignup extends React.Component {
             bankHoldername,
             bankRoutingnum,
             bankAccnum,
-            validate } = this.state;
+            validate
+            //accountCreated 
+        } = data;
         const values = {
             name,
             businessType,
@@ -125,59 +125,70 @@ class SellerLoginSignup extends React.Component {
             bankRoutingnum,
             bankAccnum,
             validate
+            //accountCreated
         };
-
         switch (step) {
             case 1:
                 return (
                     <BusinessInfo
-                        nextStep={this.nextStep}
-                        inputChange={this.inputChange}
+                        nextStep={nextStep}
+                        inputChange={inputChange}
                         values={values}
                     />
                 )
             case 2:
                 return (
                     <SellerContact
-                        nextStep={this.nextStep}
-                        prevStep={this.prevStep}
-                        inputChange={this.inputChange}
-                        handleCheckbox={this.handleCheckbox}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        inputChange={inputChange}
+                        handleCheckbox={handleCheckbox}
                         values={values}
                     />
                 )
             case 3:
                 return (
                     <BankInfo
-                        nextStep={this.nextStep}
-                        prevStep={this.prevStep}
-                        inputChange={this.inputChange}
-                        handleCountry={this.handleCountry}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        inputChange={inputChange}
+                        handleCountry={handleCountry}
                         values={values}
                     />
                 )
             case 4:
                 return (
                     <Trademarks
-                        nextStep={this.nextStep}
-                        prevStep={this.prevStep}
-                        handleCheckbox={this.handleCheckbox}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        handleCheckbox={handleCheckbox}
                         values={values}
                     />
                 )
             case 5:
                 return (
                     <SellerVerification
-                        nextStep={this.nextStep}
-                        prevStep={this.prevStep}
-                        inputChange={this.inputChange}
+                        //setAccountCreated={setAccountCreated}
+                        prevStep={prevStep}
                         values={values}
-                        backendRoutes={BACKENDROUTES}
+                        backendRoutes={config.BACKENDROUTES}
+                        pageRoutes={config.PAGEROUTES}
                     />
                 )
-        }
-
+            default:
+                return <div>Step numbers are out of whack somehow</div>
+        };
     }
+
+
+    const handleCheckbox = input => e => {
+        setState({ ...data, [input]: e.target.checked })
+    };
+    return (
+        <div className='sellersignup'>
+            {switchToPage()}
+        </div>
+    )
 }
 
-export default SellerLoginSignup;
+export default SellerSignup;

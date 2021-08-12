@@ -1,31 +1,45 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Form, Button, Row } from 'react-bootstrap';
-import axios from "axios";
-export default class SellerVerification extends Component {
-    /*continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    };*/
+import { Redirect } from 'react-router-dom';
+import './SellerVerification.css'
+import { useStateValue } from '../../StateProvider'
 
-    async onSubmit(backendRoutes, values) {
+function SellerVerification(props) {
+    const { values, backendRoutes, pageRoutes, prevStep } = props;
+
+    const [{ loggedIn }, dispatch] = useStateValue();
+
+
+    const setSellerCredentials = (val) => {
+        dispatch({
+            type: "SET_SELLER_CREDENTIALS",
+            email: values.email,
+            sellerId: val,
+            loggedIn: true
+        })
+    }
+    const onSubmit = async (values) => {
         //e.preventDefault();
         const postUrl = backendRoutes.BASEURL + backendRoutes.SELLERSIGNUP;
-        const bodyData = JSON.stringify(this.buildPostDataJson(values));
+        const bodyData = JSON.stringify(buildPostDataJson(values));
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: bodyData
         }
         const response = await fetch(postUrl, requestOptions);
+        const responseData = await response.text();
+
         if (response.status == 400) {
-            window.alert("Account Creation Failed")
+            window.alert(responseData);
         }
         else if (response.status == 200) {
             window.alert("Account Creation Successful!");
+            setSellerCredentials(responseData);
         }
     }
 
-    buildPostDataJson(values) {
+    const buildPostDataJson = () => {
         const json = {
             "name": values.name.toString(),
             "businessType": values.businessType.toString(),
@@ -58,135 +72,100 @@ export default class SellerVerification extends Component {
         return json;
     }
 
-    back = e => {
+    const back = e => {
         e.preventDefault();
-        this.props.prevStep();
+        prevStep();
     };
 
-    render() {
-        const { values, backendRoutes } = this.props;
-        return (
-            <div>
-                <h3>Verification</h3>
-                <Form>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Business Type:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.businessType} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Business Name:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.name} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Business EIN:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.ein} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Address:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.address} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            City:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.city} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            State:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.state} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            ZipCode:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.zipcode} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Primary Contact Firstname:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.contactFirstname} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Primary Contact Lastname:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.contactLastname} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Primary Contact DOB:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.contactDob} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Is Primary Contact the owner?:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.owner} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Bank Institution:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.bankInstitution} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Bank Country:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.bankCountry} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Accountholder Name:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.bankHoldername} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Bank Routing Number:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.bankRoutingnum} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Bank Account Number:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.bankAccnum} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Does your business have UPC's for all your products?:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.upc} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Is your company the manufacturer or brand owner of any of your products?:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.manufacturer} />
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Form.Label column sm="2">
-                            Do you own government registered trademarks for the branded products you want to sell?:
-                        </Form.Label>
-                        <Form.Control plaintext readOnly value={values.trademark} />
-                    </Form.Group>
-                </Form>
-                <Button variant="secondary" onClick={this.back}>Back</Button>
-                <Button variant="primary" onClick={() => this.onSubmit(backendRoutes, values)}>Submit</Button>
-            </div>
-        )
-    }
+    return (
+        <div>
+            {!loggedIn &&
+                <div className="verfication">
+                    <h3 className="verfication_header">Verify Information</h3>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Business Type:</p>
+                        <b className='verification_item2'> {values.businessType}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Business Name:</p>
+                        <b className='verification_item2'> {values.name}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Business EIN:</p>
+                        <b className='verification_item2'> {values.ein}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Address:</p>
+                        <b className='verification_item2'> {values.address}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>City:</p>
+                        <b className='verification_item2'> {values.city}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>State:</p>
+                        <b className='verification_item2'> {values.state}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Zip Code:</p>
+                        <b className='verification_item2'> {values.zipcode}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Primary Contact Firstname:</p>
+                        <b className='verification_item2'> {values.contactFirstname}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Primary Contact Lastname:</p>
+                        <b className='verification_item2'> {values.contactLastname}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Primary Contact DOB:</p>
+                        <b className='verification_item2'> {values.contactDob}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Is The Primary Contact the Owner?:</p>
+                        <b className='verification_item2'> {values.name && "Yes"}{!values.name && "No"}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Bank Instituion:</p>
+                        <b className='verification_item2'> {values.bankInstitution}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Bank Country:</p>
+                        <b className='verification_item2'> {values.bankCountry}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Bank Accountholder Name:</p>
+                        <b className='verification_item2'> {values.bankHoldername}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Bank Routing Number:</p>
+                        <b className='verification_item2'> {values.bankRoutingnum}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Bank Account Number:</p>
+                        <b className='verification_item2'> {values.bankAccnum}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Does Your Business Have UPC's For All Your Products?:</p>
+                        <b className='verification_item2'>{values.upc && "Yes"}{!values.upc && "No"}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Is Your Company The Manufacturer Or Brand Owner Of Any Of Your Products?:</p>
+                        <b className='verification_item2'>{values.manufacturer && "Yes"}{!values.manufacturer && "No"}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Do You Own Government Registered Trademarks For The Branded Products You Want To Sell?:</p>
+                        <b className='verification_item2'>{values.trademark && "Yes"}{!values.trademark && "No"}</b>
+                    </div>
+                    <div className="verification_buttons">
+                        <Button className="verification_back" variant="secondary" onClick={back}>Back</Button>
+                        <Button className='verification_submit' variant="primary" onClick={onSubmit}>Submit</Button>
+                    </div>
+
+                </div>}
+            {loggedIn && <Redirect to={pageRoutes.SELLERACCOUNT} />}
+        </div>
+    )
 }
+export default SellerVerification;

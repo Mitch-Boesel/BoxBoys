@@ -1,4 +1,5 @@
 ﻿using loginservice.Models;
+using loginservice.PostgresQueries.ReadQueries;
 using loginservice.PostgresQueries;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +47,10 @@ namespace loginservice.Controllers
             {
                 var d = data.ToString();
                 var dataDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(d);
+
+                var copyCheck = new CheckDuplicateEmail("Seller",dataDict["email"],DbTables,PgConnection,EMessages.AddSellerAccount);
+                if (!copyCheck.Valid)
+                    return BadRequest(copyCheck.ResultJson);
                 var p = new SellerSignupParams(dataDict);
 
                 var sellerObj = new NextAvailableId("seller", PgConnection, DbTables, PrimaryKeys, EMessages.NextId);
@@ -66,18 +71,18 @@ namespace loginservice.Controllers
                 {
                     Logger.LogError("SQL Insert Failed");
                     Logger.LogError(EMessages.AddSellerAccount);
-                    return StatusCode((int)HttpStatusCode.BadRequest, EMessages.AddSellerAccount);
+                    return BadRequest(EMessages.AddSellerAccount);
                 }
 
                 Logger.LogInformation("New Seller Account created successfully");
-                return StatusCode((int)HttpStatusCode.OK);
+                return Ok(p.sellerId);
 
             }
             catch(Exception e)
             {
                 Logger.LogError(e.Message);
                 Logger.LogError(EMessages.AddSellerAccount);
-                return StatusCode((int)HttpStatusCode.BadRequest);
+                return BadRequest(EMessages.AddSellerAccount); ;
             }
         }
 
@@ -86,23 +91,27 @@ namespace loginservice.Controllers
         {
             Logger.LogInformation("Hit SELLERLOGIN");
             try
-            {
+                {
 
                 var loginAttempt = new UserLogin("Seller", email, password, DbTables, PgConnection, EMessages.SellerLogin);
                 if (loginAttempt.Exception)
                 {
                     Logger.LogError("SQL Find Failed");
                     Logger.LogError(EMessages.SellerLogin);
-                    return StatusCode((int)HttpStatusCode.BadRequest, EMessages.SellerLogin);
+                    return BadRequest(loginAttempt.ResultJson);
+
+                    //return StatusCode((int)HttpStatusCode.BadRequest, EMessages.SellerLogin);
                 }
                 else if (!loginAttempt.Valid)
                 {
                     Logger.LogError("Invalid Login Credentials");
                     Logger.LogError(EMessages.SellerLogin);
-                    return StatusCode((int)HttpStatusCode.BadRequest, EMessages.SellerLogin);
+                    return BadRequest(EMessages.SellerLogin);
+                    //return StatusCode((int)HttpStatusCode.BadRequest, EMessages.SellerLogin);
                 }
                 Logger.LogInformation("Seller Login was Validated SUCCESSFULLY");
-                return StatusCode((int)HttpStatusCode.OK);
+                return Ok(loginAttempt.ResultJson);
+                //return StatusCode((int)HttpStatusCode.OK);
 
 
             }
@@ -110,7 +119,7 @@ namespace loginservice.Controllers
             {
                 Logger.LogError(e.Message);
                 Logger.LogError(EMessages.SellerLogin);
-                return StatusCode((int)HttpStatusCode.BadRequest, EMessages.SellerLogin);
+                return BadRequest(EMessages.SellerLogin);
             }
 
         }

@@ -12,12 +12,11 @@ import Misc from './Pages/Home/Misc';
 import NoMatch from './Pages/Home/NoMatch';
 import SellerLogin from './Pages/Login/SellerLogin';
 import SellerAccount from './Pages/SellerAccount';
+import SellerSignup from "./Pages/Login/SellerSignup";
 
 
 function App() {
   const PAGEROUTES = config.PAGEROUTES;
-  const BACKENDROUTES = config.BACKENDROUTES;
-  const VALIDATE = config.VALIDATE
   return (
     <React.Fragment>
       <Router>
@@ -28,12 +27,10 @@ function App() {
           <Route path={PAGEROUTES.TRAYS} component={Trays} />
           <Route path={PAGEROUTES.BOXES} component={Boxes} />
           <Route path={PAGEROUTES.MISC} component={Misc} />
-          <Route path={PAGEROUTES.SELLERLOGIN} render={(props) => (
-            <SellerLogin {...props} pageroutes={PAGEROUTES} backendpoints={BACKENDROUTES} validate={VALIDATE} />)}
-          />
+          <Route path={PAGEROUTES.SELLERACCOUNT} component={SellerAccount} />
+          <Route path={PAGEROUTES.SELLERSIGNUP} component={SellerSignup} />
+          <Route path={PAGEROUTES.SELLERLOGIN} component={SellerLogin} />
           <Route component={NoMatch} />
-
-
         </Switch>
       </Router>
     </React.Fragment>

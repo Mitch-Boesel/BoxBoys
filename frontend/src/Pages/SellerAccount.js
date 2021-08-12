@@ -1,11 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react'
+import { useStateValue } from '../StateProvider'
+import SellerHeaderBar from '../Components/SellerHeaderBar';
+import { Redirect } from 'react-router-dom';
+import { PAGEROUTES, BACKENDROUTES } from '../Config/config.json'
 
-export default class SellerAccount extends Component {
+function SellerAccount() {
+    const [{ email, sellerId, loggedIn }, dispatch] = useStateValue();
 
-    render() {
-        debugger;
-        return (
-            <h3>This will eventually be the seller page</h3>
-        );
-    }
+    return (
+
+        <div>
+            {loggedIn &&
+                <div>
+                    <SellerHeaderBar />
+                    <div>SellerId={sellerId}</div>
+                </div>
+            }
+            {!loggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
+        </div>
+
+    )
 }
+
+export default SellerAccount;
+
+/*
+        <div>
+            {loggedIn &&
+                <div>
+                    <SellerHeaderBar />
+                    <div>SellerId={sellerId}</div>
+                </div>
+            }
+            {!loggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
+
+*/
