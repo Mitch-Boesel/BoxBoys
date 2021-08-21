@@ -1,17 +1,13 @@
 ﻿using loginservice.Models;
 using loginservice.PostgresQueries.ReadQueries;
 using loginservice.PostgresQueries;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Net;
+using SharedClasses;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -104,8 +100,8 @@ namespace loginservice.Controllers
                 }
                 else if (!loginAttempt.Valid)
                 {
-                    Logger.LogError("Invalid Login Credentials");
-                    Logger.LogError(EMessages.SellerLogin);
+                    Logger.LogWarning("Invalid Login Credentials");
+                    Logger.LogWarning(EMessages.SellerLogin);
                     return BadRequest(EMessages.SellerLogin);
                     //return StatusCode((int)HttpStatusCode.BadRequest, EMessages.SellerLogin);
                 }

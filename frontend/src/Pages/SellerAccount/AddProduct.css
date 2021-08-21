@@ -1,0 +1,19 @@
+.product_title {
+    text-align: center;
+}
+
+.product_inputPair {
+    display: flex;
+    text-align: center;
+    width: 50%;
+    margin-top: 15px;
+    margin-left: 25%;
+}
+
+.product_inputLabel {
+    width: 25%;
+}
+
+.product_inputValue {
+
+}

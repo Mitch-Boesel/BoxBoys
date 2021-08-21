@@ -1,6 +1,8 @@
 import React from 'react'
 import './SellerHeaderBar.css'
 import { useStateValue } from '../StateProvider'
+import { Link } from 'react-router-dom';
+import { PAGEROUTES } from '../Config/config.json'
 
 
 function SellerHeaderBar() {
@@ -10,21 +12,31 @@ function SellerHeaderBar() {
         <div className="sellerheader">
 
             <div className="sellerheader_imgSlogan">
-                <strong className="sellerheader_homeLink">Box Boys</strong>
-                <p className="sellerheader_slogan">Seller Central</p>
+                <Link to={PAGEROUTES.SELLERACCOUNT} className="sellerheader_link">
+                    <strong className="sellerheader_homeLink">Box Boys</strong>
+                    <p className="sellerheader_slogan">Seller Central</p>
+                </Link>
             </div>
             <div className="sellerheader_options">
                 <div className="sellerheader_option">
-                    <span>Add Product</span>
+                    <Link to={PAGEROUTES.ADDPRODUCT} className="sellerheader_link">
+                        <span >Add Product</span>
+                    </Link>
                 </div>
                 <div className="sellerheader_option">
-                    <span>Edit Product</span>
+                    <Link to={PAGEROUTES.EDITPRODUCT} className="sellerheader_link">
+                        <span>Edit Product</span>
+                    </Link>
                 </div>
                 <div className="sellerheader_option">
-                    <span>Reports</span>
+                    <Link to={PAGEROUTES.SELLERREPORTS} className="sellerheader_link">
+                        <span>Reports</span>
+                    </Link>
                 </div>
                 <div className="sellerheader_option">
-                    <span>Orders</span>
+                    <Link to={PAGEROUTES.SELLERORDERS} className="sellerheader_link">
+                        <span>Orders</span>
+                    </Link>
                 </div>
             </div>
             <div className="sellerheader_account">

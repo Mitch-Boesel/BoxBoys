@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace loginservice.Models
+namespace SharedClasses
 {
     public class DBTables
     {
@@ -13,5 +12,6 @@ namespace loginservice.Models
         public string BuyerPasswords { get; set; }
         public string SellerContacts { get; set; }
         public string BankAccounts { get; set; }
+        public string Products { get; set; }
     }
 }

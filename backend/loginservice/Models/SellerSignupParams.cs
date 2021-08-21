@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace loginservice.Controllers
+namespace loginservice.Models
 {
     public class SellerSignupParams
     {

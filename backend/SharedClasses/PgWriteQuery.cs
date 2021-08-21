@@ -1,42 +1,41 @@
-﻿using loginservice.Models;
-using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace loginservice.PostgresQueries
+using System.Text;
+using Npgsql;
+namespace SharedClasses
 {
-    public abstract class PgReadQuery : PgQuery
+    public abstract class PgWriteQuery : PgQuery
     {
-        public PgReadQuery(PgConnection pg, string eMessage): base(pg, eMessage)
+        public PgWriteQuery(PgConnection pg, string eMessage) : base(pg, eMessage)
         {
 
         }
 
-        public abstract string ExtractData(ref NpgsqlDataReader reader);
-
-        public override string ExecuteQuery()
+        public override object ExecuteQuery()
         {
             var sqlstr = BuildSqlString();
             using (var connection = new NpgsqlConnection(this.PgConnection.ConnectionString()))
             {
-                string jsonString = string.Empty;
+                object jsonString = String.Empty;
                 connection.Open();
+                var trans = connection.BeginTransaction();
                 using (var cmd = new NpgsqlCommand(sqlstr, connection))
                 {
+                    cmd.Transaction = trans;
                     try
                     {
-                        var reader = cmd.ExecuteReader();
+                        //var reader = cmd.ExecuteReader();
+                        var numRows = cmd.ExecuteNonQuery();
 
-                        jsonString = ExtractData(ref reader);
-                        reader.Close();
+                        jsonString = $"SQL query successful, {numRows} were effected";
+                        trans.Commit();
                     }
                     catch (Exception ex)
                     {
                         this.Exception = true;
                         Console.WriteLine(ex.Message.ToString());
                         jsonString = this.ExceptionJsonString;  // errorMessage
+                        trans.Rollback();
                     }
                     finally
                     {

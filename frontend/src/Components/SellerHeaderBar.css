@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     margin-right: 10px;
-    width: 120px;
+    width: 10%;
 }
 
 .sellerheader_slogan {
@@ -33,7 +33,7 @@
 }
 
 .sellerheader_options {
-    width: 100%;
+    width: 75%;
     display: flex;
     justify-content: space-evenly;
     color: white;
@@ -53,7 +53,18 @@
     text-decoration: none;
 }
 
+.sellerheader_link {
+    color: white;
+    text-decoration: none;
+}
+
+.sellerheader_link:hover {
+    color: rgb(191, 223, 255);
+    text-decoration: none;
+}
+
 .sellerheader_account {
+    width: 15%;
     color: white;
     font-size: small;
 }

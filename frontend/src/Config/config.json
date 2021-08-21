@@ -8,12 +8,25 @@
         "MISC": "/misc",
         "SELLERLOGIN": "/seller-login",
         "SELLERSIGNUP": "/seller-login/signup",
-        "SELLERACCOUNT": "/seller-account"
+        "SELLERACCOUNT": "/seller-account",
+        "ADDPRODUCT": "/seller-account/add-product",
+        "EDITPRODUCT": "/seller-account/edit-product",
+        "SELLERREPORTS": "/seller-account/seller-reports",
+        "SELLERORDERS": "./seller-account/seller-orders"
     },
     "BACKENDROUTES": {
         "BASEURL": "https://localhost:5001/",
+        "BASEURL_ACCOUNTSERVICE": "https://localhost:5011/",
         "SELLERSIGNUP": "api/mcc/accounts/sellersignup",
-        "SELLERLOGIN": "api/mcc/accounts/sellerlogin"
+        "SELLERLOGIN": "api/mcc/accounts/sellerlogin",
+        "ADDPRODUCT": "api/mcc/seller-account/newproduct"
     },
-    "VALIDATE": true
+    "VALIDATE": true,
+    "PRODUCT_CATEGORIES": [
+        "Boxes",
+        "Corrugated",
+        "Plastics",
+        "Trays",
+        "Other"
+    ]
 }

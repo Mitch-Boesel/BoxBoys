@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using loginservice.Models;
+using SharedClasses;
 
 namespace loginservice.PostgresQueries.ReadQueries
 {
@@ -28,7 +29,7 @@ namespace loginservice.PostgresQueries.ReadQueries
                 default:
                     throw new Exception("Invalid userType Parameter");
             }
-            ResultJson = ExecuteQuery();
+            ResultJson = (string)ExecuteQuery();
             Valid = ResultJson != AlreadyExistsString && !Exception? true : false;
         }
         public override string BuildSqlString()
@@ -39,7 +40,7 @@ namespace loginservice.PostgresQueries.ReadQueries
             return sqlStr;
         }
 
-        public override string ExtractData(ref NpgsqlDataReader reader)
+        public override object ExtractData(ref NpgsqlDataReader reader)
         {
             if (reader.HasRows)
                  return AlreadyExistsString;
