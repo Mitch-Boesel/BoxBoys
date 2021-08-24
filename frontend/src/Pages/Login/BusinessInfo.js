@@ -19,12 +19,15 @@ function BusinessInfo(props) {
                 values.address.length != 0 &&
                 values.city.length != 0 &&
                 values.state.length != 0 &&
-                values.zipcode.length != 0) ? true : false);
+                values.zipcode.length != 0 &&
+                values.state.length != 0 &&
+                validateInteger(values.ein) &&
+                validateInteger(values.zipcode)) ? true : false);
         else
             return true;
     }
 
-    const { inputChange } = props;
+    const { inputChange, maxLengths, validateInteger } = props;
     var { values } = props;
     return (
         <div >
@@ -39,7 +42,7 @@ function BusinessInfo(props) {
                 </Form.Group>
                 <Form.Group className="business_pair" >
                     <Form.Label>Business Name</Form.Label>
-                    <Form.Control type='text' onChange={inputChange('name')} value={values.name} />
+                    <Form.Control type='text' onChange={inputChange('name')} value={values.name} maxLength={maxLengths.NAME} />
                     {values.name.length == 0 && <span className='errorMessage'>Business Name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="business_pair" >
@@ -49,18 +52,19 @@ function BusinessInfo(props) {
                 </Form.Group>
                 <Form.Group className="business_pair" >
                     <Form.Label>Business Address</Form.Label>
-                    <Form.Control type='address' onChange={inputChange('address')} value={values.address}></Form.Control>
+                    <Form.Control type='address' onChange={inputChange('address')} value={values.address} maxLength={maxLengths.ADDRESS}></Form.Control>
                     {values.address.length == 0 && <span className='errorMessage'>Address can't be blank</span>}
                 </Form.Group>
                 <Form.Row>
                     <Form.Group className="business_pair" as={Col}>
                         <Form.Label>City</Form.Label>
-                        <Form.Control onChange={inputChange('city')} value={values.city} />
+                        <Form.Control onChange={inputChange('city')} value={values.city} maxLength={maxLengths.CITY} />
                         {values.city.length == 0 && <span className='errorMessage'>City can't be blank</span>}
                     </Form.Group>
                     <Form.Group className="business_pair" as={Col} controlId="formGridState">
                         <Form.Label>State</Form.Label>
                         <Form.Control as="select" onChange={inputChange('state')} value={values.state}>
+                            <option value=""></option>
                             <option value="AK">Alaska</option>
                             <option value="AL">Alabama</option>
                             <option value="AR">Arkansas</option>

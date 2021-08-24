@@ -1,12 +1,19 @@
-using loginservice.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using SharedClasses;
-namespace loginservice
+using SellerAccountService.Models;
+
+namespace SellerAccountService
 {
     public class Startup
     {
@@ -16,22 +23,20 @@ namespace loginservice
         }
 
         public IConfiguration Configuration { get; }
-        //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            //services.AddControllers();
 
             services.AddControllers().AddNewtonsoftJson();
             var pgConnection = Configuration.GetSection("PgConnection").Get<PgConnection>();
             var dbTables = Configuration.GetSection("DBTables").Get<DBTables>();
-            var eMessages = Configuration.GetSection("ErrorMessages").Get<ErrorMessages>();
-            var primaryKeys = Configuration.GetSection("PrimaryKeys").Get<PrimaryKeys>();
+            var pks = Configuration.GetSection("PrimaryKeys").Get<PrimaryKeys>();
             services.AddSingleton<PgConnection>(pgConnection);
             services.AddSingleton<DBTables>(dbTables);
-            services.AddSingleton<ErrorMessages>(eMessages);
-            services.AddSingleton<PrimaryKeys>(primaryKeys);
+            services.AddSingleton<PrimaryKeys>(pks);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,14 +56,14 @@ namespace loginservice
                 options => options.WithOrigins(FrontendRoutes.BaseUrl).AllowAnyMethod().AllowAnyHeader()
             );
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
         }
-         
+
         // I think this enabled dynamic reload of config?
         private IConfiguration CreateConfiguration()
         {

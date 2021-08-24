@@ -1,9 +1,6 @@
-﻿using loginservice.Models;
-using Npgsql;
+﻿using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SharedClasses;
 
 namespace loginservice.PostgresQueries
 {
@@ -41,7 +38,8 @@ namespace loginservice.PostgresQueries
 
             }
 
-            this.ResultJson = ExecuteQuery();
+            this.ResultJson = (string)ExecuteQuery();
+
             if (ResultJson == ExceptionJsonString || ResultJson == BadRowsString)
                 Valid = false;
             else
@@ -57,7 +55,7 @@ namespace loginservice.PostgresQueries
             return sqlstring;
         }
 
-        public override string ExtractData(ref NpgsqlDataReader reader)
+        public override object ExtractData(ref NpgsqlDataReader reader)
         {
             if (reader.HasRows)
             {

@@ -1,10 +1,7 @@
-﻿using loginservice.Controllers;
+﻿//using loginservice.Controllers;
 using loginservice.Models;
-using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SharedClasses;
 
 namespace loginservice.PostgresQueries
 {
@@ -16,7 +13,7 @@ namespace loginservice.PostgresQueries
         {
             this.P = signupParams;
             this.DbTables = dBTables;
-            this.ResultJson = ExecuteQuery();
+            this.ResultJson = (string)ExecuteQuery();
         }
         public override string BuildSqlString()
         {

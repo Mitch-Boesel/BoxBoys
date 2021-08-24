@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["loginservice.csproj", "."]
-RUN dotnet restore "./loginservice.csproj"
+COPY ["SellerAccountService.csproj", "."]
+RUN dotnet restore "./SellerAccountService.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "loginservice.csproj" -c Release -o /app/build
+RUN dotnet build "SellerAccountService.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "loginservice.csproj" -c Release -o /app/publish
+RUN dotnet publish "SellerAccountService.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "loginservice.dll"]
+ENTRYPOINT ["dotnet", "SellerAccountService.dll"]

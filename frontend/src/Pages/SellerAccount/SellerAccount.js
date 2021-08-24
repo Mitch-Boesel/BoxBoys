@@ -1,14 +1,13 @@
 import React from 'react'
-import { useStateValue } from '../StateProvider'
-import SellerHeaderBar from '../Components/SellerHeaderBar';
+import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
-import { PAGEROUTES, BACKENDROUTES } from '../Config/config.json'
+import SellerHeaderBar from '../../Components/SellerHeaderBar';
+import { PAGEROUTES, BACKENDROUTES } from '../../Config/config.json'
 
 function SellerAccount() {
     const [{ email, sellerId, loggedIn }, dispatch] = useStateValue();
 
     return (
-
         <div>
             {loggedIn &&
                 <div>

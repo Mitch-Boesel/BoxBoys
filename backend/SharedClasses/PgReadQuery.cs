@@ -1,44 +1,41 @@
-﻿using loginservice.Models;
-using Npgsql;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
+using Npgsql;
 
-namespace loginservice.PostgresQueries
+namespace SharedClasses
 {
-    public abstract class PgWriteQuery : PgQuery
+    public abstract class PgReadQuery : PgQuery
     {
-        public PgWriteQuery(PgConnection pg, string eMessage): base(pg,eMessage)
+        public PgReadQuery(PgConnection pg, string eMessage) : base(pg, eMessage)
         {
 
         }
 
-        public override string ExecuteQuery()
+        public abstract object ExtractData(ref NpgsqlDataReader reader);
+
+        public override object ExecuteQuery()
         {
             var sqlstr = BuildSqlString();
             using (var connection = new NpgsqlConnection(this.PgConnection.ConnectionString()))
             {
-                string jsonString = string.Empty;
+                object jsonString;
+
                 connection.Open();
-                var trans = connection.BeginTransaction();
                 using (var cmd = new NpgsqlCommand(sqlstr, connection))
                 {
-                    cmd.Transaction = trans;
                     try
                     {
-                        //var reader = cmd.ExecuteReader();
-                        var numRows = cmd.ExecuteNonQuery();
+                        var reader = cmd.ExecuteReader();
 
-                        jsonString = $"SQL query successful, {numRows} were effected";
-                        trans.Commit();
+                        jsonString = ExtractData(ref reader);
+                        reader.Close();
                     }
                     catch (Exception ex)
                     {
                         this.Exception = true;
                         Console.WriteLine(ex.Message.ToString());
                         jsonString = this.ExceptionJsonString;  // errorMessage
-                        trans.Rollback();
                     }
                     finally
                     {
@@ -50,4 +47,4 @@ namespace loginservice.PostgresQueries
             }
         }
     }
-}
+   }

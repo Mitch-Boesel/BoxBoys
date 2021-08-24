@@ -1,9 +1,7 @@
 ﻿using loginservice.Models;
 using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SharedClasses;
 
 namespace loginservice.PostgresQueries
 {
@@ -37,7 +35,7 @@ namespace loginservice.PostgresQueries
                     throw new Exception("Wrong parameters for Next Available ID");
 
             }
-            this.ResultJson = ExecuteQuery();
+            this.ResultJson = (string)ExecuteQuery();
         }
 
         public override string BuildSqlString()
@@ -45,7 +43,7 @@ namespace loginservice.PostgresQueries
             var sqlstr = $"SELECT MAX({this.PrimaryKey}) FROM {this.Table}";
             return sqlstr;
         }
-        public override string ExtractData(ref NpgsqlDataReader reader)
+        public override object ExtractData(ref NpgsqlDataReader reader)
         {
             var nextMax = 0;
             while (reader.Read())
