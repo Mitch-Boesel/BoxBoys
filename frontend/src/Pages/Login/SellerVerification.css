@@ -1,0 +1,35 @@
+.verification {
+    display: flex;
+    flex-direction: column;
+}
+
+.verfication_header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.verification_pair {
+    display: flex;
+    padding-top: 10px;
+}
+
+.verification_item1 {
+    padding-right: 10px;
+}
+
+.verification_item2 {
+}
+
+.verification_buttons {
+    width: 100%;
+    justify-content: center;
+}
+
+.verification_back {
+    margin-right: 400px;
+}
+
+.verification_submit {
+    justify-content: right;
+}

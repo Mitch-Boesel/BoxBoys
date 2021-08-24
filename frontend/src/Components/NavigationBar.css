@@ -1,13 +1,32 @@
-.navigation-header-item {
-    color: white !important;
-    margin-left:500px;
+
+.navbar {
+    display: flex;
+    background-color: rgb(95, 93, 93);
+    align-items: center;
+    height: 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.nav-bar-item {
-    margin-left: 115px !important;
-    color: white !important;
+.navbar_option {
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 18px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-decoration: none;
+
 }
 
-.nav-bar-item:hover {
-    color:rgb(213, 211, 220) !important
+.navbar_link:hover {
+    color:rgb(213, 211, 220)
+}
+
+.navbar_link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
 }

@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  login-service:
+    image: boxboys-login-service:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    container_name: boxboys-login-service
+    ports:
+      - 5000:80
+    depends_on: 
+      - "db"
+  selleraccount-service:
+    image: boxboys-selleraccount-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    container_name: boxboys-selleraccount-service
+    ports:
+      - 5010:80
+    depends_on: 
+      - "db"
+
+  frontend:
+    image: boxboys-frontend:latest
+    ports: 
+      - 3010:3000
+    stdin_open: true
+    container_name: boxboys-frontend
+    depends_on: 
+      - "login-service"
+      - "selleraccount-service"
+
+  db:
+    image: postgres:13
+    container_name: boxboys-postgres-db
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=BoxBoys2021
+      - POSTGRES_DB=MCC
+    volumes: 
+      - ./Database/postgres_data:/var/lib/postgresql/data
+      - ./Database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports: 
+      - 5433:5432

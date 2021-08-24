@@ -1,0 +1,91 @@
+.sellerheader {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.sellerheader_imgSlogan {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    width: 10%;
+}
+
+.sellerheader_slogan {
+    color: white;
+    font-size: 15px;
+
+}
+
+.sellerheader_homeLink {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.sellerheader_homeLink:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.sellerheader_options {
+    width: 75%;
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 18px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-decoration: none;
+}
+
+.sellerheader_option {
+    display: flex;
+    color: white;
+    justify-content: space-evenly;
+    font-size: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+}
+
+.sellerheader_link {
+    color: white;
+    text-decoration: none;
+}
+
+.sellerheader_link:hover {
+    color: rgb(191, 223, 255);
+    text-decoration: none;
+}
+
+.sellerheader_account {
+    width: 15%;
+    color: white;
+    font-size: small;
+}
+
+.navbar_option {
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 18px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-decoration: none;
+}
+
+.navbar_link:hover {
+    color:rgb(213, 211, 220)
+}
+
+.navbar_link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}

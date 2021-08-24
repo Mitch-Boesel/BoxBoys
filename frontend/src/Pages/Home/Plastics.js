@@ -2,20 +2,16 @@ import React from 'react';
 import { HeaderBar } from "../../Components/HeaderBar";
 import { NavigationBar } from "../../Components/NavigationBar";
 
-class Plastics extends React.Component {
+function Plastics() {
+    return (
+        <React.Fragment>
+            <HeaderBar></HeaderBar>
+            <NavigationBar></NavigationBar>
 
+            <h1>Soon to have Plastics!</h1>
+        </React.Fragment>
+    );
 
-    render() {
-        return (
-            <React.Fragment>
-                <HeaderBar></HeaderBar>
-                <NavigationBar></NavigationBar>
-
-                <h1>Soon to have plastics!</h1>
-            </React.Fragment>
-        );
-
-    }
 }
 
 export default Plastics

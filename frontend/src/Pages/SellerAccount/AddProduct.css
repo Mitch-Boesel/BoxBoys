@@ -1,0 +1,32 @@
+.product_title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product_inputPair {
+    display: flex;
+    text-align: left;
+    width: 50%;
+    margin-top: 15px;
+    margin-left: 25%;
+}
+
+.product_inputLabel {
+    width: 25%;
+}
+
+.product_inputValue {
+
+}
+
+.product_checkboxLabel {
+    text-align: left;
+    width: 60%;
+}
+
+.product_submit {
+    align-items: center;
+    margin-left: 50%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}

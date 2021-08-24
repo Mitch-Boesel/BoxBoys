@@ -1,0 +1,89 @@
+.header_bar {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header_homeLink {
+    color: white;
+    text-decoration: none;
+}
+
+.header_homeLink:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.header_slogan {
+    color: white;
+    padding-left: 50px;
+    padding-right: 30px;
+}
+
+.header_search {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    border-radius: 24px;
+}
+
+.header_searchIcon {
+    padding:5px;
+    height: 30px !important;
+    background-color: rgb(171, 191, 250);
+}
+
+.header_searchInput {
+    height: 30px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+  }
+
+  .header_nav {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 50px;
+}
+
+.header_option {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+}
+
+.header_optionLineOne {
+    font-size: 10px;
+}
+.header_optionLineTwo {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.header_optionBasket {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.header_basketCount {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header_sellerSigninLink {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.header_sellerSigninLink:hover {
+    color: white;
+    text-decoration: none;
+}
