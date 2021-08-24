@@ -15,18 +15,66 @@
         "SELLERORDERS": "./seller-account/seller-orders"
     },
     "BACKENDROUTES": {
-        "BASEURL": "https://localhost:5001/",
-        "BASEURL_ACCOUNTSERVICE": "https://localhost:5011/",
+        "BASEURL_LOGINSERVICE": "http://localhost:5000/",
+        "BASEURL_ACCOUNTSERVICE": "http://localhost:5010/",
         "SELLERSIGNUP": "api/mcc/accounts/sellersignup",
         "SELLERLOGIN": "api/mcc/accounts/sellerlogin",
-        "ADDPRODUCT": "api/mcc/seller-account/newproduct"
+        "ADDPRODUCT": "api/mcc/seller-account/newproduct",
+        "NUMBER_OF_PRODUCTS": "api/mcc/seller-account/number-products"
     },
     "VALIDATE": true,
-    "PRODUCT_CATEGORIES": [
-        "Boxes",
-        "Corrugated",
-        "Plastics",
-        "Trays",
-        "Other"
-    ]
+    "PRODUCT_CONFIG": {
+        "CATEGORIES": [
+            "",
+            "Boxes",
+            "Corrugated",
+            "Plastics",
+            "Trays",
+            "Other"
+        ],
+        "UNITS": [
+            "",
+            "By the Item",
+            "By the Thousand"
+        ],
+        "FULFILLMENT": [
+            "",
+            "I Will Ship",
+            "Buyer Can Pickup",
+            "Both",
+            "BoxBoys Will Ship"
+        ],
+        "MAX_LENGTH": {
+            "CATEOGORY": 15,
+            "TITLE": 50,
+            "BRAND": 25,
+            "MANUFACTURER": 25,
+            "SIZE": 20,
+            "STYLE": 20,
+            "ADDRESSS": 30,
+            "CITY": 20,
+            "STATE": 2,
+            "UNIT": 20,
+            "CONDITION": 20,
+            "FULLFILLMENT": 20,
+            "DESCRIPTION": 100
+        }
+    },
+    "SELLER_SIGNUP_CONFIG": {
+        "MAX_LENGTH": {
+            "BUSINESSTYPE": 12,
+            "NAME": 35,
+            "ADDRESS": 30,
+            "CITY": 20,
+            "FIRSTNAME": 15,
+            "LASTNAME": 15,
+            "IDTYPE": 15,
+            "EMAIL": 30,
+            "PHONENUMBER": 14,
+            "PASSWORD": 20,
+            "INSTITUTION": 30,
+            "COUNTRY": 20,
+            "HOLDERNAME": 35
+        }
+    }
 }

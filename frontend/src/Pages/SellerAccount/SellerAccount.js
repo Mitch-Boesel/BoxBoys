@@ -8,7 +8,6 @@ function SellerAccount() {
     const [{ email, sellerId, loggedIn }, dispatch] = useStateValue();
 
     return (
-
         <div>
             {loggedIn &&
                 <div>

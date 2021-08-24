@@ -14,7 +14,7 @@ namespace SellerAccountService.Queries
         public FullAddress FullAddress { get; set; }
         public GetSellerAccountAddress(PgConnection pg, DBTables dBTables, int sellerId, string eMessage="An Error Occured Retrieving ") :base(pg,eMessage)
         {
-            Table = dBTables.Products;
+            Table = dBTables.SellerAccounts;
             SellerId = sellerId;
             FullAddress = (FullAddress)ExecuteQuery();
         }
@@ -22,7 +22,7 @@ namespace SellerAccountService.Queries
         {
             string sqlString = $"SELECT address, city, usstate, zipcode" +
                                $" FROM {Table}" +
-                               $" WHERE sellerid = '{SellerId}'";
+                               $" WHERE sellerid = {SellerId}";
             return sqlString;
         }
 

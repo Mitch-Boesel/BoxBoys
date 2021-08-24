@@ -4,7 +4,7 @@ import CountrySelect from 'react-bootstrap-country-select';
 import './BankingInformation.css'
 
 function BankingInformation(props) {
-    const { values, inputChange, handleCountry } = props;
+    const { values, inputChange, handleCountry, maxLengths, validateInteger } = props;
 
     const Continue = values => e => {
         e.preventDefault();
@@ -20,7 +20,9 @@ function BankingInformation(props) {
                 values.bankCountry.length != 0 &&
                 values.bankHoldername.length != 0 &&
                 values.bankRoutingnum.length == 9 &&
-                values.bankAccnum.length != 0) ? true : false);
+                values.bankAccnum.length != 0 &&
+                validateInteger(values.bankAccnum) &&
+                validateInteger(values.bankRoutingnum)) ? true : false);
         else
             return true;
     }
@@ -36,7 +38,7 @@ function BankingInformation(props) {
             <Form>
                 <Form.Group className="banking_pair">
                     <Form.Label>Banking Institution</Form.Label>
-                    <Form.Control type='text' placeholder="Bank of America, Wells Fargo, etc." onChange={inputChange('bankInstitution')} value={values.bankInstitution} />
+                    <Form.Control type='text' placeholder="Bank of America, Wells Fargo, etc." onChange={inputChange('bankInstitution')} value={values.bankInstitution} maxLength={maxLengths.INSTITUTION} />
                     {values.bankInstitution.length == 0 && <span className='errorMessage'>bank name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="banking_pair">
@@ -46,7 +48,7 @@ function BankingInformation(props) {
                 </Form.Group>
                 <Form.Group className="banking_pair">
                     <Form.Label>Account Holders Name</Form.Label>
-                    <Form.Control type='text' onChange={inputChange('bankHoldername')} value={values.bankHoldername} />
+                    <Form.Control type='text' onChange={inputChange('bankHoldername')} value={values.bankHoldername} maxLength={maxLengths.HOLDERNAME} />
                     {values.bankHoldername.length == 0 && <span className='errorMessage'>bankholder name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="banking_pair">

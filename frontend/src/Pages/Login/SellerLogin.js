@@ -31,7 +31,7 @@ function SellerLogin() {
     };
 
     const onSubmit = async () => {
-        const getUrl = BACKENDROUTES.BASEURL + BACKENDROUTES.SELLERLOGIN + `?email=${data.email}&password=${data.password}`;
+        const getUrl = BACKENDROUTES.BASEURL_LOGINSERVICE + BACKENDROUTES.SELLERLOGIN + `?email=${data.email}&password=${data.password}`;
 
         const response = await fetch(getUrl);
         const sellerId = await response.text();

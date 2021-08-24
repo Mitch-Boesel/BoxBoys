@@ -65,6 +65,10 @@ function SellerSignup() {
         setState({ ...data, [input]: e })
     };
 
+    const validateInteger = val => {
+        return !isNaN(val)
+    };
+
 
     const switchToPage = () => {
         const { step } = data;
@@ -133,6 +137,8 @@ function SellerSignup() {
                     <BusinessInfo
                         nextStep={nextStep}
                         inputChange={inputChange}
+                        maxLengths={config.SELLER_SIGNUP_CONFIG.MAX_LENGTH}
+                        validateInteger={validateInteger}
                         values={values}
                     />
                 )
@@ -143,6 +149,7 @@ function SellerSignup() {
                         prevStep={prevStep}
                         inputChange={inputChange}
                         handleCheckbox={handleCheckbox}
+                        maxLengths={config.SELLER_SIGNUP_CONFIG.MAX_LENGTH}
                         values={values}
                     />
                 )
@@ -153,6 +160,8 @@ function SellerSignup() {
                         prevStep={prevStep}
                         inputChange={inputChange}
                         handleCountry={handleCountry}
+                        validateInteger={validateInteger}
+                        maxLengths={config.SELLER_SIGNUP_CONFIG.MAX_LENGTH}
                         values={values}
                     />
                 )

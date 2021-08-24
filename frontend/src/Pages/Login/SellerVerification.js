@@ -20,7 +20,7 @@ function SellerVerification(props) {
     }
     const onSubmit = async (values) => {
         //e.preventDefault();
-        const postUrl = backendRoutes.BASEURL + backendRoutes.SELLERSIGNUP;
+        const postUrl = backendRoutes.BASEURL_LOGINSERVICE + backendRoutes.SELLERSIGNUP;
         const bodyData = JSON.stringify(buildPostDataJson(values));
         const requestOptions = {
             method: 'POST',

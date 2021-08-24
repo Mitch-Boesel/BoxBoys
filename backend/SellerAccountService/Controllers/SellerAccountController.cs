@@ -34,7 +34,7 @@ namespace SellerAccountService.Controllers
         [HttpPost("newproduct")]
         public IActionResult NewProduct([FromBody] JObject data)
         {
-            const string eMessage = "Unable to Retrieve the Next Available Product ID";
+            const string eMessage = "Unable to Add the New Product:(";
             try
             {
                 var d = data.ToString();
@@ -59,7 +59,7 @@ namespace SellerAccountService.Controllers
                     return BadRequest(eMessage);
                 }
 
-                Logger.LogInformation("New Seller Account created successfully");
+                Logger.LogInformation("New Product created successfully");
                 return Ok(productID.NextId);
             }
             catch (Exception e)
@@ -67,6 +67,28 @@ namespace SellerAccountService.Controllers
                 Logger.LogError(e.Message);
                 Logger.LogError(eMessage);
                 return BadRequest(eMessage); ;
+            }
+        }
+
+        [HttpGet("number-products")]
+        public IActionResult NumberOfProducts(string sellerid)
+        {
+            Logger.LogInformation("Hit NumberOfProducts");
+            const string eMessage = "Getting Number of Products Failed:(";
+            try
+            {
+                var numProducts = new NumProductsForSeller(PgConnection, eMessage, int.Parse(sellerid), DbTables);
+                if (numProducts.Exception)
+                {
+                    Logger.LogWarning(eMessage);
+                    return BadRequest(eMessage); 
+                }
+                return Ok(numProducts.ResultJson);
+            }
+            catch(Exception e)
+            {
+                Logger.LogWarning(eMessage);
+                return BadRequest(eMessage);
             }
         }
 

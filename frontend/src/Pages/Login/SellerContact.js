@@ -5,7 +5,7 @@ import './SellerContact.css'
 
 function SellerContact(props) {
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-    const { values, inputChange, handleCheckbox } = props;
+    const { values, inputChange, handleCheckbox, maxLengths } = props;
 
     const Continue = values => e => {
         e.preventDefault();
@@ -40,12 +40,12 @@ function SellerContact(props) {
             <Form>
                 <Form.Group className="contact_pair">
                     <Form.Label>Primary Contact Person First Name</Form.Label>
-                    <Form.Control type='text' onChange={inputChange('contactFirstname')} value={values.contactFirstname} />
+                    <Form.Control type='text' onChange={inputChange('contactFirstname')} value={values.contactFirstname} maxLength={maxLengths.FIRSTNAME} />
                     {values.contactFirstname.length == 0 && <span className='errorMessage'>contact first name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Primary Contact Person Last Name</Form.Label>
-                    <Form.Control type='text' onChange={inputChange('contactLastname')} value={values.contactLastname} />
+                    <Form.Control type='text' onChange={inputChange('contactLastname')} value={values.contactLastname} maxLength={maxLengths.LASTNAME} />
                     {values.contactLastname.length == 0 && <span className='errorMessage'>contact last name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
@@ -55,17 +55,17 @@ function SellerContact(props) {
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Phone Number</Form.Label>
-                    <Form.Control type='text' placeholder='111-111-1111' onChange={inputChange('phone')} value={values.phone} />
+                    <Form.Control type='text' placeholder='111-111-1111' onChange={inputChange('phone')} value={values.phone} maxLength={maxLengths.PHONENUMBER} />
                     {values.phone.length < 10 && values.phone.length < 15 && <span className='errorMessage'>please enter a valid phone number</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Account Email</Form.Label>
-                    <Form.Control type='email' placeholder='name@example.com' onChange={inputChange('email')} value={values.email} />
+                    <Form.Control type='email' placeholder='name@example.com' onChange={inputChange('email')} value={values.email} maxLength={maxLengths.EMAIL} />
                     {!validEmailRegex.test(values.email) && <span className='errorMessage'>please enter a valid email</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Account Password</Form.Label>
-                    <Form.Control type="password" placeholder='Password' onChange={inputChange('password')} value={values.password} />
+                    <Form.Control type="password" placeholder='Password' onChange={inputChange('password')} value={values.password} maxLength={maxLengths.PASSWORD} />
                     {values.password.length < 8 && <span className='errorMessage'>Password must be at least 8 characters</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">

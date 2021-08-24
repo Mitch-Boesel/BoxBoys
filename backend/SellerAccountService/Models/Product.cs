@@ -32,13 +32,13 @@ namespace SellerAccountService.Models
         public Product(Dictionary<string,string> pairs, long productID)
         {
             ProductID = productID;
-            SellerID = int.Parse(pairs["sellerId"]);
+            SellerID = int.Parse(pairs["sellerid"]);
             UploadDate = DateTime.Now;
             Category = pairs["category"];
             Title = pairs["title"];
             Brand = pairs["brand"];
             Manufacturer = pairs["manufacturer"];
-            Price = double.Parse(pairs[""]);
+            Price = double.Parse(pairs["price"]);
             Size = pairs["size"];
             Style = pairs["style"];
             Address = pairs["address"];

@@ -23,6 +23,7 @@ namespace SellerAccountService.Queries
             var sqlString = $"INSERT INTO {DbTables.Products}" +
                             $" VALUES(" +
                             $"'{Product.ProductID}'," +
+                            $"'{Product.SellerID}'," +
                             $"'{Product.UploadDate}'," +
                             $"'{Product.Category}'," +
                             $"'{Product.Title}'," +
@@ -39,8 +40,7 @@ namespace SellerAccountService.Queries
                             $"'{Product.Unit}'," +
                             $"'{Product.Condition}'," +
                             $"'{Product.Fulfillment}'," +
-                            $"'{Product.Description}'," +
-                            $"'{Product.State}');";
+                            $"'{Product.Description}');";
 
             return sqlString;
         }
