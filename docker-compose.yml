@@ -41,3 +41,14 @@ services:
       - ./Database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports: 
       - 5433:5432
+    
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=boxboyspackaging@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=ILoveBoxes1
+    depends_on:
+      - "db"
+    ports:
+      - "5050:80"
