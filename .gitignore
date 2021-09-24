@@ -351,3 +351,4 @@ MigrationBackup/
 
 # Personal Extras
 *appsettings.json
+# Database/postgres_data
