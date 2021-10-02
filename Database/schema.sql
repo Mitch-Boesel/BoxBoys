@@ -4,7 +4,7 @@
 
 -- Box Boys Database Schema
 
-CREATE TABLE IF NOT EXISTS SellerAccounts
+CREATE TABLE IF NOT EXISTS tblSellerAccounts
 (
 	sellerId INT,
 	creationDate DATE NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS SellerAccounts
 	PRIMARY KEY (sellerId)
 );
 
-CREATE TABLE IF NOT EXISTS SellerContacts
+CREATE TABLE IF NOT EXISTS tblSellerContacts
 (
 	contactId INT,
 	sellerId INT,
@@ -37,19 +37,19 @@ CREATE TABLE IF NOT EXISTS SellerContacts
 	phoneNumber VARCHAR(14) NOT NULL,
 	owner BOOLEAN NOT NULL,
 	PRIMARY KEY (contactId),
-	FOREIGN KEY (sellerId) REFERENCES SellerAccounts(sellerId)
+	FOREIGN KEY (sellerId) REFERENCES tblSellerAccounts(sellerId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS SellerPasswords
+CREATE TABLE IF NOT EXISTS tblSellerPasswords
 (
 	pid INT,
 	sellerId INT,
 	password VARCHAR(20) NOT NULL,
 	PRIMARY KEY (pid),
-	FOREIGN KEY (sellerId) REFERENCES SellerAccounts(sellerId)
+	FOREIGN KEY (sellerId) REFERENCES tblSellerAccounts(sellerId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS BankAccounts
+CREATE TABLE IF NOT EXISTS tblBankAccounts
 (
 	accountId INT,
 	sellerId INT,
@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS BankAccounts
 	accNum BIGINT NOT NULL,
 	dateAdded DATE NOT NULL,
 	PRIMARY KEY (accountId),
-	FOREIGN KEY (sellerId) REFERENCES SellerAccounts(sellerId)
+	FOREIGN KEY (sellerId) REFERENCES tblSellerAccounts(sellerId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Products
+CREATE TABLE IF NOT EXISTS tblProducts
 (
 	productId BIGINT,
 	sellerId INT,
@@ -85,40 +85,40 @@ CREATE TABLE IF NOT EXISTS Products
 	fulfillment VARCHAR(20) NOT NULL,
 	description VARCHAR(100),
 	PRIMARY KEY (productId),
-	FOREIGN KEY (sellerId) REFERENCES SellerAccounts(sellerId)
+	FOREIGN KEY (sellerId) REFERENCES tblSellerAccounts(sellerId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Images
+CREATE TABLE IF NOT EXISTS tblProductImages
 (
 	imageId BIGINT,
 	productId BIGINT,
 	displayOrder INT,
 	image BYTEA NOT NULL,
 	PRIMARY KEY (imageId),
-	FOREIGN KEY (productId) REFERENCES Products(productId)
+	FOREIGN KEY (productId) REFERENCES tblProducts(productId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Keywords
+CREATE TABLE IF NOT EXISTS tblProductKeywords
 (
 	keywordId BIGINT,
 	productId BIGINT,
 	displayOrder INT,
 	word VARCHAR(15) NOT NULL,
 	PRIMARY KEY (keywordId),
-	FOREIGN KEY (productId) REFERENCES Products(productId)
+	FOREIGN KEY (productId) REFERENCES tblProducts(productId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Bulletpoints
+CREATE TABLE IF NOT EXISTS tblProductBulletpoints
 (
 	bulletId BIGINT,
 	productId BIGINT,
 	bullet VARCHAR(25) NOT NULL,
 	PRIMARY KEY (bulletId),
-	FOREIGN KEY (productId) REFERENCES Products(productId)
+	FOREIGN KEY (productId) REFERENCES tblProducts(productId) ON DELETE CASCADE
 );
 
 
-CREATE TABLE IF NOT EXISTS BuyerAccounts
+CREATE TABLE IF NOT EXISTS tblBuyerAccounts
 (
 	buyerId INT,
 	creationDate DATE NOT NULL,	
@@ -128,16 +128,16 @@ CREATE TABLE IF NOT EXISTS BuyerAccounts
 	PRIMARY KEY (buyerId)
 );
 
-CREATE TABLE IF NOT EXISTS BuyerPasswords
+CREATE TABLE IF NOT EXISTS tblBuyerPasswords
 (
 	pid INT,
 	buyerId INT,
 	password VARCHAR(20) NOT NULL,
 	PRIMARY KEY (pid),
-	FOREIGN KEY (buyerId) REFERENCES BuyerAccounts(buyerId)
+	FOREIGN KEY (buyerId) REFERENCES tblBuyerAccounts(buyerId) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Transactions
+CREATE TABLE IF NOT EXISTS tblTransactions
 (
 		transactionId BIGINT,
 		sellerId INT,
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS Transactions
 		saleAmount MONEY NOT NULL,
 		buyerAddress VARCHAR(30),
 		PRIMARY KEY (transactionId),
-		FOREIGN KEY (sellerId) REFERENCES SellerAccounts(sellerId),
-		FOREIGN KEY (buyerId) REFERENCES BuyerAccounts(buyerId),
-		FOREIGN KEY (productId) REFERENCES Products(productId)
+		FOREIGN KEY (sellerId) REFERENCES tblSellerAccounts(sellerId),
+		FOREIGN KEY (buyerId) REFERENCES tblBuyerAccounts(buyerId),
+		FOREIGN KEY (productId) REFERENCES tblProducts(productId)
 );

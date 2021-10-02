@@ -10,7 +10,7 @@ services:
     depends_on: 
       - "db"
   selleraccount-service:
-    image: boxboys-selleraccount-service
+    image: boxboys-selleraccount-service:latest
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     container_name: boxboys-selleraccount-service
@@ -18,7 +18,19 @@ services:
       - 5010:80
     depends_on: 
       - "db"
-
+      
+  update-save-db:
+    image: boxboys-updatesavedb:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    container_name: boxboys-update-save-db
+    ports:
+      - 5008:80
+    depends_on:
+      - "db"
+    volumes:
+      - ./backend/UpdateSaveDB/DBBackupFiles:/app/DBBackupFiles
+      
   frontend:
     image: boxboys-frontend:latest
     ports: 
@@ -28,6 +40,7 @@ services:
     depends_on: 
       - "login-service"
       - "selleraccount-service"
+      - "update-save-db"
 
   db:
     image: postgres:13
