@@ -7,7 +7,7 @@ import { PAGEROUTES, BACKENDROUTES, VALIDATE } from '../../Config/config.json';
 
 
 function EditProduct() {
-    const [{ loggedIn, sellerId }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn, sellerId }, dispatch] = useStateValue();
     const [data, setState] = useState({
         numProducts: ""
     })
@@ -35,13 +35,13 @@ function EditProduct() {
     }
     return (
         <div>
-            {loggedIn &&
+            {sellerLoggedIn &&
                 <div>
                     <SellerHeaderBar />
                     Number of Products Uploaded={data.numProducts}
                 </div>
             }
-            {!loggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
+            {!sellerLoggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
         </div >
     )
 }

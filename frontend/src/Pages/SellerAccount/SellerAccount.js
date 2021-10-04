@@ -5,17 +5,17 @@ import SellerHeaderBar from '../../Components/SellerHeaderBar';
 import { PAGEROUTES, BACKENDROUTES } from '../../Config/config.json'
 
 function SellerAccount() {
-    const [{ email, sellerId, loggedIn }, dispatch] = useStateValue();
+    const [{ email, sellerId, sellerLoggedIn }, dispatch] = useStateValue();
 
     return (
         <div>
-            {loggedIn &&
+            {sellerLoggedIn &&
                 <div>
                     <SellerHeaderBar />
                     <div>SellerId={sellerId}</div>
                 </div>
             }
-            {!loggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
+            {!sellerLoggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
         </div>
 
     )

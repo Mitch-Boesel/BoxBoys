@@ -7,7 +7,7 @@ import { useStateValue } from '../../StateProvider'
 
 
 function SellerLogin() {
-    const [{ loggedIn }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn }, dispatch] = useStateValue();
 
     const { BACKENDROUTES, PAGEROUTES } = config;
 
@@ -48,12 +48,12 @@ function SellerLogin() {
 
     return (
         <div>
-            {loggedIn &&
+            {sellerLoggedIn &&
                 <Redirect to={PAGEROUTES.SELLERACCOUNT} />
             }
 
             {
-                !loggedIn &&
+                !sellerLoggedIn &&
                 <div className="sellerlogin">
                     <h3 className="seller_header">Seller Account Sign In</h3>
                     <Form>

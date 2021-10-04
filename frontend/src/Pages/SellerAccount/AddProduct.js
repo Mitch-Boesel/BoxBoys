@@ -8,7 +8,7 @@ import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
 
 function AddProduct() {
-    const [{ loggedIn, sellerId }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn, sellerId }, dispatch] = useStateValue();
 
     const [data, setState] = useState({
         category: "",
@@ -135,7 +135,7 @@ function AddProduct() {
     }
     return (
         <div>
-            {loggedIn &&
+            {sellerLoggedIn &&
                 <div>
                     <SellerHeaderBar />
                     <div className="addproduct">
@@ -286,7 +286,7 @@ function AddProduct() {
                     </div>
 
                 </div>}
-            {!loggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
+            {!sellerLoggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
         </div>
     )
 }

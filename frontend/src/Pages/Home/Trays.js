@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderBar } from "../../Components/HeaderBar";
+import HeaderBar from "../../Components/HeaderBar";
 import { NavigationBar } from "../../Components/NavigationBar";
 
 function Trays() {

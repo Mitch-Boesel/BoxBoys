@@ -12,8 +12,11 @@ function SellerHeaderBar() {
         <div className="sellerheader">
 
             <div className="sellerheader_imgSlogan">
-                <Link to={PAGEROUTES.SELLERACCOUNT} className="sellerheader_link">
+                <Link to={PAGEROUTES.HOMEPAGE} className="sellerheader_link">
                     <strong className="sellerheader_homeLink">Box Boys</strong>
+                </Link>
+
+                <Link to={PAGEROUTES.SELLERACCOUNT} className="sellerheader_link">
                     <p className="sellerheader_slogan">Seller Central</p>
                 </Link>
             </div>

@@ -18,7 +18,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 email: action.email,
-                loggedIn: action.loggedIn,
+                sellerLoggedIn: action.loggedIn,
                 sellerId: action.sellerId
             }
         default:
