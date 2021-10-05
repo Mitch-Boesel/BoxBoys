@@ -1,3 +1,0 @@
-'1','1','10/01/2021 00:00:00','Boxes','Apple Boxes','Stark Ind','Stark Ind','2.50','12"','Stark Ind','1 Main','New York City','NY','10001','5','By the Thousand','New','I Will Ship','Brand new Stark Industries 12" Apple Boxes'
-'2','1','10/02/2021 00:00:00','Trays','Really good Trays','Costco','Big Packaging','2.00','6 inch','Costco','1 Main','New York City','NY','10001','782','By the Item','Weathered','Buyer Can Pickup','New 6" Costco trays, have been stored outside though.'
-'3','2','10/02/2021 00:00:00','Plastics','Cherry Clamshells','Big Packaging','China Corp.','0.75','4"','Clamshell','1 Main','Salt Lake City','UT','84101','1','By the Thousand','New','BoxBoys Will Ship','Brand new 4" Costco Cherry Clamshells'

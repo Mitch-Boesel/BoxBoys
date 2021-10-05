@@ -15,16 +15,16 @@
         "SELLERORDERS": "./seller-account/seller-orders"
     },
     "BACKENDROUTES": {
-        "BASEURL_LOGINSERVICE": "https://localhost:5001/",
-        "BASEURL_ACCOUNTSERVICE": "https://localhost:5011/",
-        "BASEULR_UPDATESAVEDB": "https://localhost:5009/",
-        "SELLERSIGNUP": "api/mcc/accounts/sellersignup",
-        "SELLERLOGIN": "api/mcc/accounts/sellerlogin",
-        "ADDPRODUCT": "api/mcc/seller-account/newproduct",
-        "NUMBER_OF_PRODUCTS": "api/mcc/seller-account/number-products",
-        "SAVE_DB": "api/mcc/db/write-to-local",
-        "lOAD_DB": "api/mcc/db/read-from-local"
-    },
+"BASEURL_LOGINSERVICE": "http://localhost:5000/",
+"BASEURL_ACCOUNTSERVICE": "http://localhost:5010/",
+"BASEULR_UPDATESAVEDB": "http://localhost:5008/",
+"SELLERSIGNUP": "api/mcc/accounts/sellersignup",
+"SELLERLOGIN": "api/mcc/accounts/sellerlogin",
+"ADDPRODUCT": "api/mcc/seller-account/newproduct",
+"NUMBER_OF_PRODUCTS": "api/mcc/seller-account/number-products",
+"SAVE_DB": "api/mcc/db/write-to-local",
+"lOAD_DB": "api/mcc/db/read-from-local"
+},
     "VALIDATE": true,
     "PRODUCT_CONFIG": {
         "CATEGORIES": [
