@@ -31,7 +31,7 @@ namespace SellerAccountService.Controllers
         }
 
 
-        [HttpPost("newproduct")]
+        [HttpPost("new-product")]
         public IActionResult NewProduct([FromBody] JObject data)
         {
             const string eMessage = "Unable to Add the New Product:(";

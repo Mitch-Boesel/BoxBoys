@@ -37,9 +37,8 @@ namespace SellerAccountService.Queries
                             $"'{Product.State}'," +
                             $"'{Product.ZipCode}'," +
                             $"'{Product.Quantity}'," +
-                            $"'{Product.Unit}'," +
                             $"'{Product.Condition}'," +
-                            $"'{Product.Fulfillment}'," +
+                            $"'{Product.Buyerpickup}'," +
                             $"'{Product.Description}');";
 
             return sqlString;

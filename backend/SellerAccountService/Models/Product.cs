@@ -21,10 +21,9 @@ namespace SellerAccountService.Models
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
-        public int Quantity { get;}
-        public string Unit { get;}
+        public string Quantity { get;}
         public string Condition { get;}
-        public string Fulfillment { get;}
+        public bool Buyerpickup { get;}
         public string Description { get;}
 
 
@@ -45,10 +44,9 @@ namespace SellerAccountService.Models
             City = pairs["city"];
             State = pairs["state"];
             ZipCode = pairs["zipcode"];
-            Quantity = int.Parse(pairs["quantity"]);
-            Unit = pairs["unit"];
+            Quantity = pairs["quantity"];
             Condition = pairs["condition"];
-            Fulfillment = pairs["fulfillment"];
+            Buyerpickup = bool.Parse(pairs["buyerpickup"]);
             Description = pairs["description"];
         }
     }

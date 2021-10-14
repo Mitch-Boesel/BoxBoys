@@ -34,10 +34,9 @@ function AddProduct() {
         setState({ ...data, [input]: e.target.value })
     };
 
-    const handleCheckbox = () => {
-        const value = data.sameAddress;
-        setState({ ...data, sameAddress: !value })
-    }
+    const handleCheckbox = input => e => {
+        setState({ ...data, [input]: e.target.checked })
+    };
 
     const resetState = () => {
         setState({
@@ -50,9 +49,8 @@ function AddProduct() {
             size: "",
             price: "",
             quantity: "",
-            unit: "",
             condition: "",
-            fulfillment: "",
+            buyerPickup: false,
             description: "",
             address: "",
             city: "",
@@ -68,18 +66,16 @@ function AddProduct() {
 
     const validate = () => {
         if (VALIDATE == true)
-            return ((data.category.length != 0 &&
-                data.title.length != 0 &&
-                data.brand.length != 0 &&
-                data.manufacturer.length != 0 &&
-                data.style.length != 0 &&
-                data.size.length != 0 &&
-                data.price.length != 0 &&
-                data.quantity.length != 0 &&
-                data.unit.length != 0 &&
-                data.condition.length != 0 &&
-                data.fulfillment.length != 0 &&
-                data.description.length != 0 &&
+            return ((data.category.length !== 0 &&
+                data.title.length !== 0 &&
+                data.brand.length !== 0 &&
+                data.manufacturer.length !== 0 &&
+                data.style.length !== 0 &&
+                data.size.length !== 0 &&
+                data.price.length !== 0 &&
+                data.quantity.length !== 0 &&
+                data.condition.length !== 0 &&
+                data.description.length !== 0 &&
                 validateInteger(data.quantity) &&
                 validateInteger(data.price) &&
                 ((!data.sameAddress && validateInteger(data.zipcode)) || data.sameAddress)) ? true : false);
@@ -98,10 +94,10 @@ function AddProduct() {
             const response = await fetch(postUrl, requestOptions);
             const responseData = await response.text();
 
-            if (response.status == 400) {
+            if (response.status === 400) {
                 window.alert(responseData);
             }
-            else if (response.status == 200) {
+            else if (response.status === 200) {
                 window.alert("New Product Was Successfully Added!");
                 resetState();
             }
@@ -121,9 +117,8 @@ function AddProduct() {
             "size": data.size.toString(),
             "price": data.price.toString(),
             "quantity": data.quantity.toString(),
-            "unit": data.unit.toString(),
             "condition": data.condition.toString(),
-            "fulfillment": data.fulfillment.toString(),
+            "buyerpickup": data.buyerPickup.toString(),
             "description": data.description.toString(),
             "sameAddress": data.sameAddress.toString(),
             "address": data.address.toString(),
@@ -178,32 +173,21 @@ function AddProduct() {
                                 <Form.Control type="text" onChange={inputChange('quantity')} value={data.quantity} className="product_inputValue"></Form.Control>
                             </Form.Group>
                             <Form.Group className="product_inputPair">
-                                <Form.Label className="product_inputLabel">Unit:</Form.Label>
-                                <Form.Control as="select" onChange={inputChange('unit')} className="product_inputValue" value={data.unit}>
-                                    {PRODUCT_CONFIG.UNITS.map(name => (
-                                        <option>{name}</option>
-                                    ))}
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group className="product_inputPair">
                                 <Form.Label className="product_inputLabel">Condition:</Form.Label>
                                 <Form.Control type="text" onChange={inputChange('condition')} value={data.condition} className="product_inputValue" maxLength={PRODUCT_CONFIG.MAX_LENGTH.CONDITION}></Form.Control>
                             </Form.Group>
                             <Form.Group className="product_inputPair">
-                                <Form.Label className="product_inputLabel">Fulfillment:</Form.Label>
-                                <Form.Control as="select" onChange={inputChange('fulfillment')} value={data.fulfillment} className="product_inputValue">
-                                    {PRODUCT_CONFIG.FULFILLMENT.map(name => (
-                                        <option>{name}</option>
-                                    ))}
-                                </Form.Control>
+                                <Form.Label className="product_inputLabel">Buyer Can Pickup</Form.Label>
+                                <Form.Check type='checkbox' onChange={handleCheckbox("buyerPickup")} checked={data.buyerPickup} className="product_inputValue" />
                             </Form.Group>
+
                             <Form.Group className="product_inputPair">
                                 <Form.Label className="product_inputLabel">Description:</Form.Label>
                                 <Form.Control type="text" onChange={inputChange('description')} value={data.description} className="product_inputValue" maxLength={PRODUCT_CONFIG.MAX_LENGTH.DESCRIPTION}></Form.Control>
                             </Form.Group>
                             <Form.Group className="product_inputPair">
                                 <Form.Label className="product_checkboxLabel">Same Address as your registered Business Address?</Form.Label>
-                                <Form.Check type='checkbox' onChange={handleCheckbox} checked={data.sameAddress} className="product_inputValue" />
+                                <Form.Check type='checkbox' onChange={handleCheckbox("sameAddress")} checked={data.sameAddress} className="product_inputValue" />
                             </Form.Group>
                             {!data.sameAddress && <div>
 

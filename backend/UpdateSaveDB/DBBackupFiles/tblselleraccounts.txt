@@ -1,0 +1,2 @@
+'1','9/6/2021 12:00:00 AM','Private','Smith Ranch','1221','233b Cameron Lake RD','Okanogan','WA','98840','True','False','False','System.Byte[]'
+'2','9/21/2021 12:00:00 AM','Private','BYOT','939312','2334 Walle Lane','Omak','WA','98841','False','False','False','System.Byte[]'

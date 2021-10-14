@@ -8,7 +8,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using SharedClasses;
-
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace loginservice.Controllers
@@ -34,7 +33,7 @@ namespace loginservice.Controllers
             this.PrimaryKeys = pks;
         }
 
-        [HttpPost("sellersignup")]
+        [HttpPost("seller-signup")]
         public IActionResult NewSellerAccount([FromBody]JObject data)
         {
             Logger.LogInformation("Hit SELLERSIGNUP");
@@ -82,7 +81,7 @@ namespace loginservice.Controllers
             }
         }
 
-        [HttpGet("sellerlogin")]
+        [HttpGet("seller-login")]
         public IActionResult SellerLogin(string email, string password)
         {
             Logger.LogInformation("Hit SELLERLOGIN");

@@ -8,7 +8,7 @@ import './Home.css';
 function HomePage() {
 
     const onSave = async () => {
-        const postUrl = BACKENDROUTES.BASEULR_UPDATESAVEDB + BACKENDROUTES.SAVE_DB;
+        const postUrl = BACKENDROUTES.BASEURL_UPDATESAVEDB + BACKENDROUTES.SAVE_DB;
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
@@ -19,7 +19,7 @@ function HomePage() {
 
 
     const onLoad = async () => {
-        const postUrl = BACKENDROUTES.BASEULR_UPDATESAVEDB + BACKENDROUTES.lOAD_DB;
+        const postUrl = BACKENDROUTES.BASEURL_UPDATESAVEDB + BACKENDROUTES.lOAD_DB;
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }

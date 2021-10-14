@@ -80,9 +80,8 @@ CREATE TABLE IF NOT EXISTS tblProducts
 	state VARCHAR(2) NOT NULL,
 	zipCode INT NOT NULL,
 	quantity INT NOT NULL,
-	unit VARCHAR(20) NOT NULL,
 	condition VARCHAR(20) NOT NULL,
-	fulfillment VARCHAR(20) NOT NULL,
+	buyerpickup BOOLEAN NOT NULL,
 	description VARCHAR(100),
 	PRIMARY KEY (productId),
 	FOREIGN KEY (sellerId) REFERENCES tblSellerAccounts(sellerId) ON DELETE CASCADE

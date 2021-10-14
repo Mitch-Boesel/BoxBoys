@@ -1,6 +1,19 @@
+.addproduct {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 10px 55px 10px 0px;
+    border-radius: 15px;
+    transition: all .3s;
+}
+
 .product_title {
     text-align: center;
     margin-top: 10px;
+    font-size: 22px;
 }
 
 .product_inputPair {
