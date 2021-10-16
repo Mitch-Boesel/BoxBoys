@@ -19,7 +19,7 @@ namespace SearchService.Queries
         public override string BuildSqlString()
         {
             var sqlString = "SELECT p.productid, p.title, p.brand, p.manufacturer, p.size, p.style, p.condition, " +
-                                   "p.buyerpickup, p.price, p.quantity" +
+                                   "p.buyerpickup, p.price, p.quantity, p.city, p.state" +
                             $" FROM {ProductTable} p" +
                             $" WHERE sellerid = {SellerID}";
 
@@ -44,6 +44,8 @@ namespace SearchService.Queries
                 dct.Add("buyerpickup", reader.GetValue(7).ToString());
                 dct.Add("price", reader.GetValue(8).ToString());
                 dct.Add("quantity", reader.GetValue(9).ToString());
+                dct.Add("location", $"{reader.GetValue(10)}, {reader.GetValue(11)}");
+
 
                 returnData["data"].Add(reader.GetValue(0).ToString(), dct);
 

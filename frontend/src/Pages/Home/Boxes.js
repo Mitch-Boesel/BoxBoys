@@ -1,18 +1,12 @@
 import React from 'react';
-import HeaderBar from "../../Components/HeaderBar";
-import { NavigationBar } from "../../Components/NavigationBar";
+import SearchPage from './SearchPage'
 
 function Boxes() {
-
-
     return (
-        <React.Fragment>
-            <HeaderBar></HeaderBar>
-            <NavigationBar></NavigationBar>
-
-            <h1>Soon to have Boxes!</h1>
-        </React.Fragment>
+        <div>
+            <SearchPage category="Boxes" />
+        </div>
     );
-}
 
+}
 export default Boxes

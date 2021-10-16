@@ -41,14 +41,20 @@ function ProductCard(props) {
                             <div className="product_stats_row_item2">{props.buyerPickup}</div>
                         </div>
                     </div>
-                    <div className="product_stats_price">
-                        <div className="product_stats_row_item1">PRICE: </div>
-                        <div className="product_stats_row_item2">{props.price}</div>
+                    <div className="product_stats_row">
+                        <div className="product_stats_row_item">
+                            <div className="product_stats_row_item1">PRICE:</div>
+                            <div className="product_stats_row_item2">{props.price}</div>
+                        </div>
+                        <div className="product_stats_row_item">
+                            <div className="product_stats_row_item1">Quantity: </div>
+                            <div className="product_stats_row_item2">{props.quantity}</div>
+                        </div>
                     </div>
                     <div className="product_stats_row">
                         <div className="product_stats_row_item">
-                            <div className="product_stats_row_item1">Quantity:</div>
-                            <div className="product_stats_row_item2">{props.quantity}</div>
+                            <div className="product_stats_row_item1">Location:</div>
+                            <div className="product_stats_row_item2">{props.location}</div>
                         </div>
                     </div>
                 </div>

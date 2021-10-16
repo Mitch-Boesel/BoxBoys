@@ -61,7 +61,8 @@ function EditProduct() {
                         buyerPickup={obj["buyerpickup"]}
                         price={obj["price"]}
                         quantity={obj["quantity"]}
-                        unit={obj["unit"]} />
+                        unit={obj["unit"]}
+                        location={obj["location"]} />
                 </div>
             )
         });

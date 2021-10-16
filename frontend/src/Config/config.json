@@ -38,18 +38,6 @@
             "Trays",
             "Other"
         ],
-        "UNITS": [
-            "",
-            "By the Item",
-            "By the Thousand"
-        ],
-        "FULFILLMENT": [
-            "",
-            "I Will Ship",
-            "Buyer Can Pickup",
-            "Both",
-            "BoxBoys Will Ship"
-        ],
         "MAX_LENGTH": {
             "CATEOGORY": 15,
             "TITLE": 50,

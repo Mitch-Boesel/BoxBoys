@@ -1,24 +1,25 @@
-.trays_page {
+.search_page {
     display: flex;
     flex-direction: row;
 }
 
-.trays_search_criteria {
+.search_page_criteria {
     border-color: black;
     border-style: solid;
     border-width: 1.5px;
     font-size: 20px;
     width: 20%;
+    margin-top: 10px;
 }
 
-.trays_page_products {
-    width: 70%;
-    padding-left: 10px;
+.search_page_products {
+    width: 65%;
+    margin-left: 10%;
     justify-content: right;
     justify-items: right;
 }
 
-.trays_page_products_item {
+.seach_page_products_item {
     height: auto;
     padding-bottom: 10px;
     margin-bottom: 10px;

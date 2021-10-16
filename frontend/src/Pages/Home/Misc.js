@@ -1,17 +1,12 @@
 import React from 'react';
-import HeaderBar from "../../Components/HeaderBar";
-import { NavigationBar } from "../../Components/NavigationBar";
+import SearchPage from './SearchPage'
 
 function Misc() {
     return (
-        <React.Fragment>
-            <HeaderBar></HeaderBar>
-            <NavigationBar></NavigationBar>
-
-            <h1>Everything Else!</h1>
-        </React.Fragment>
+        <div>
+            <SearchPage category="Other" />
+        </div>
     );
 
 }
-
 export default Misc;

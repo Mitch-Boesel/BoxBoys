@@ -23,6 +23,8 @@
 .product_card_title {
     font-size: 20px;
     justify-content: center;
+    margin-left: 5%;
+    margin-top: 10px;
 }
 
 .product_stats {
@@ -46,7 +48,8 @@
 }
 
 .product_stats_row_item {
-    padding-right: 5%;
+    width: 30%;
+    margin-left: 5%;
 }
 
 .product_stats_row_item1 {

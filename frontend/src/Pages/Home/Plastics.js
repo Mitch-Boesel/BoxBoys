@@ -1,15 +1,11 @@
-import React from 'react';
-import HeaderBar from "../../Components/HeaderBar";
-import { NavigationBar } from "../../Components/NavigationBar";
+import React, { useState, useEffect } from 'react';
+import SearchPage from './SearchPage'
 
 function Plastics() {
     return (
-        <React.Fragment>
-            <HeaderBar></HeaderBar>
-            <NavigationBar></NavigationBar>
-
-            <h1>Soon to have Plastics!</h1>
-        </React.Fragment>
+        <div>
+            <SearchPage category="Plastics" />
+        </div>
     );
 
 }

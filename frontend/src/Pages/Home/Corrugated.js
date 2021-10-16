@@ -1,15 +1,12 @@
 import React from 'react';
-import HeaderBar from "../../Components/HeaderBar";
-import { NavigationBar } from "../../Components/NavigationBar";
+import SearchPage from './SearchPage'
 
 function Corrugated() {
     return (
-        <React.Fragment>
-            <HeaderBar></HeaderBar>
-            <NavigationBar></NavigationBar>
-            <h1>Soon to have Corregated Products!</h1>
-        </React.Fragment>
+        <div>
+            <SearchPage category="Corrugated" />
+        </div>
     );
-}
 
+}
 export default Corrugated
