@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
 import SellerHeaderBar from '../../Components/SellerHeaderBar';

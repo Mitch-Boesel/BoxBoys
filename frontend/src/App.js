@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import config from './Config/config.json';
+import { PAGEROUTES, LOCALSTORAGE_KEYS } from './Config/config.json';
 
 import HomePage from './Pages/Home/Home';
 import Plastics from './Pages/Home/Plastics';
@@ -17,10 +17,45 @@ import AddProduct from "./Pages/SellerAccount/AddProduct";
 import EditProduct from "./Pages/SellerAccount/EditProduct";
 import SellerReports from "./Pages/SellerAccount/SellerReports";
 import SellerOrders from "./Pages/SellerAccount/SellerOrders";
+import { useStateValue } from './StateProvider'
+
 
 
 function App() {
-  const PAGEROUTES = config.PAGEROUTES;
+  const [{ email, sellerId, sellerLoggedIn }, dispatch] = useStateValue();
+
+  useEffect(() => {
+    (() => {
+      if (!sellerLoggedIn) {
+        debugger;
+        const sessionEmail = localStorage.getItem(LOCALSTORAGE_KEYS.EMAIL);
+        const sessionSellerID = localStorage.getItem(LOCALSTORAGE_KEYS.SELLERID);
+        if (sessionEmail != null && sessionSellerID != null)
+          setSellerCredentials(sessionEmail, sessionSellerID)
+      }
+    })()
+  }, []);
+
+  const setSellerCredentials = (seshEmail, seshSID) => {
+    dispatch({
+      type: "SET_SELLER_CREDENTIALS",
+      email: seshEmail,
+      sellerId: seshSID,
+      loggedIn: true
+    })
+  }
+  useEffect(() => {
+    window.addEventListener("beforeunload", alertUser);
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+    localStorage.setItem("BoxBoysPageRefresh", true);
+    localStorage.setItem("BoxBoysLastUrl", window.location.href);
+  };
   return (
     <React.Fragment>
       <Router>

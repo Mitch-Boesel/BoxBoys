@@ -50,13 +50,12 @@ function ProductCard(props) {
                             <div className="product_stats_row_item1">Quantity: </div>
                             <div className="product_stats_row_item2">{props.quantity}</div>
                         </div>
-                    </div>
-                    <div className="product_stats_row">
                         <div className="product_stats_row_item">
                             <div className="product_stats_row_item1">Location:</div>
                             <div className="product_stats_row_item2">{props.location}</div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

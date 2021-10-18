@@ -87,3 +87,12 @@
     color: white;
     text-decoration: none;
 }
+
+.header_SellerSignout {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}

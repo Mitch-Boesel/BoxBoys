@@ -9,7 +9,7 @@ import { useStateValue } from '../../StateProvider'
 function SellerLogin() {
     const [{ sellerLoggedIn }, dispatch] = useStateValue();
 
-    const { BACKENDROUTES, PAGEROUTES } = config;
+    const { BACKENDROUTES, PAGEROUTES, LOCALSTORAGE_KEYS } = config;
 
     const setSellerCredentials = (val) => {
         dispatch({
@@ -18,6 +18,9 @@ function SellerLogin() {
             sellerId: val,
             loggedIn: true
         })
+
+        localStorage.setItem(LOCALSTORAGE_KEYS.EMAIL, data.email);
+        localStorage.setItem(LOCALSTORAGE_KEYS.SELLERID, val);
     }
 
     const [data, setState] = useState({

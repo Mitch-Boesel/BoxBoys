@@ -72,9 +72,7 @@ function SearchPage(props) {
             <HeaderBar />
             <NavigationBar />
             <div className="search_page">
-                <div className="search_page_criteria">
-                    <SearchCriteria />
-                </div>
+                <SearchCriteria />
                 <div className="search_page_products">
                     {data.hasLoaded &&
                         <div>

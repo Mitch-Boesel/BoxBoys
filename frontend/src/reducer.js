@@ -20,7 +20,16 @@ const reducer = (state, action) => {
                 email: action.email,
                 sellerLoggedIn: action.loggedIn,
                 sellerId: action.sellerId
-            }
+            };
+
+        case "SELLER_LOGOUT":
+            return {
+                ...state,
+                email: "",
+                sellerLoggedIn: false,
+                sellerId: ""
+            };
+
         default:
             return state;
     }

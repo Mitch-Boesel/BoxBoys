@@ -1,3 +1,5 @@
+'35','2','10/16/2021 12:00:00 AM','Corrugated','Really Good Corrugated Packaging','Costco','Costco','8.00','8"','Costco','2334 Walle Lane','Omak','WA','98841','500','New','True','Brand new costco 8" Corrugated'
+'37','2','10/16/2021 12:00:00 AM','Plastics','Plastic Cherry Clam Shells','Northwest','Big Packaging','2.50','6"','Clamshell','2334 Walle Lane','Omak','WA','98841','300','Slightly Weathered','True','Stored under cover but outdoors. 6" Cherry Clamshells'
 '1','1','9/8/2021 12:00:00 AM','Trays','Apple Trays','Keyes','Keyes','586.21','56','Apple Tray','233b Cameron Lake RD','Okanogan','WA','98840','4285','OK','True','OK condition'
 '2','1','9/21/2021 12:00:00 AM','Trays','Apple Tray','Keyes','Keyes','427.23','36','Tray Pack','233b Cameron Lake RD','Okanogan','WA','98840','3840','good','True','Good condition'
 '3','1','9/21/2021 12:00:00 AM','Trays','Apple Tray','Keyes','Keyes','527.23','48A','Tray Pack','233b Cameron Lake RD','Okanogan','WA','98840','3840','good','True','In good to moderate condition'
