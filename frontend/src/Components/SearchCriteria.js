@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 import './SearchCriteria.css'
 
-function SearchCriteria() {
+function SearchCriteria(props) {
 
     const [data, setState] = useState({
         locationClosest: false,
