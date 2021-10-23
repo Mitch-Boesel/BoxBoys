@@ -3,9 +3,9 @@ import './AddProduct.css'
 import SellerHeaderBar from '../../Components/SellerHeaderBar'
 import { Form, Button } from 'react-bootstrap';
 import { PAGEROUTES, BACKENDROUTES, VALIDATE, PRODUCT_CONFIG } from '../../Config/config.json';
-//import PRODUCT_CONFIG from '../../Config/ProductConfig.json'
 import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
+import ProductForm from '../../Components/ProductForm';
 
 function AddProduct() {
     const [{ sellerLoggedIn, sellerId }, dispatch] = useStateValue();
@@ -19,7 +19,6 @@ function AddProduct() {
         size: "",
         price: "",
         quantity: "",
-        unit: "",
         condition: "",
         fulfillment: "",
         description: "",
@@ -30,12 +29,13 @@ function AddProduct() {
         sameAddress: false
     });
 
-    const inputChange = input => e => {
-        setState({ ...data, [input]: e.target.value })
-    };
 
-    const handleCheckbox = input => e => {
-        setState({ ...data, [input]: e.target.checked })
+    function inputChange(key, val) {
+        setState({ ...data, [key]: val })
+    }
+
+    function handleCheckbox(key, val) {
+        setState({ ...data, [key]: val })
     };
 
     const resetState = () => {
@@ -65,7 +65,7 @@ function AddProduct() {
     };
 
     const validate = () => {
-        if (VALIDATE == true)
+        if (VALIDATE === true)
             return ((data.category.length !== 0 &&
                 data.title.length !== 0 &&
                 data.brand.length !== 0 &&
@@ -83,8 +83,10 @@ function AddProduct() {
     }
 
     const onSubmit = async () => {
+        debugger;
         if (validate()) {
             const postUrl = BACKENDROUTES.BASEURL_ACCOUNTSERVICE + BACKENDROUTES.ADDPRODUCT;
+            debugger;
             const bodyData = JSON.stringify(buildPostDataJson());
             const requestOptions = {
                 method: 'POST',
@@ -128,6 +130,27 @@ function AddProduct() {
         }
         return json;
     }
+
+    return (
+        <div>
+            {sellerLoggedIn &&
+                <div>
+                    <SellerHeaderBar />
+                    <div className="addproduct">
+                        <h3 className="product_title">Add A New product</h3>
+                        <ProductForm data={data}
+                            addressCheckbox={true}
+                            onChange={inputChange}
+                            onChecked={handleCheckbox}
+                            submit={onSubmit}
+                            buttonVariant="primary"
+                            buttonText="Submit" />
+                    </div>
+                </div>}
+            {!sellerLoggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
+        </div>
+    )
+    /*
     return (
         <div>
             {sellerLoggedIn &&
@@ -272,7 +295,7 @@ function AddProduct() {
                 </div>}
             {!sellerLoggedIn && <Redirect to={PAGEROUTES.HOMEPAGE} />}
         </div>
-    )
+    )*/
 }
 
 export default AddProduct
