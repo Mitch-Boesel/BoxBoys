@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Row } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import './SellerVerification.css'
 import { useStateValue } from '../../StateProvider'
@@ -19,7 +19,6 @@ function SellerVerification(props) {
         })
     }
     const onSubmit = async (values) => {
-        //e.preventDefault();
         const postUrl = backendRoutes.BASEURL_LOGINSERVICE + backendRoutes.SELLERSIGNUP;
         const bodyData = JSON.stringify(buildPostDataJson(values));
         const requestOptions = {
@@ -30,10 +29,10 @@ function SellerVerification(props) {
         const response = await fetch(postUrl, requestOptions);
         const responseData = await response.text();
 
-        if (response.status == 400) {
+        if (response.status === 400) {
             window.alert(responseData);
         }
-        else if (response.status == 200) {
+        else if (response.status === 200) {
             window.alert("Account Creation Successful!");
             setSellerCredentials(responseData);
         }

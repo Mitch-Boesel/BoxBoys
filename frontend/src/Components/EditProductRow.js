@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import ProductCard from './ProductCard';
 import EditProductModal from './EditProductModal';
@@ -35,9 +35,11 @@ function EditProductRow(props) {
                 window.alert(responseData);
             }
             else if (response.status === 200) {
+                debugger;
                 window.alert("Product Was Successfully Updated!");
                 toggleModal();
                 props.handleScroll();
+                d.buyerpickup = d.buyerpickup ? "True" : "False"
                 setState({ productInfo: d });
             }
         }
@@ -80,7 +82,7 @@ function EditProductRow(props) {
             "price": d.price.toString(),
             "quantity": d.quantity.toString(),
             "condition": d.condition.toString(),
-            "buyerpickup": d.buyerPickup.toString(),
+            "buyerpickup": d.buyerpickup.toString(),
             "description": d.description.toString(),
             "address": d.address.toString(),
             "city": d.city.toString(),
@@ -106,7 +108,7 @@ function EditProductRow(props) {
                         size={data.productInfo["size"]}
                         style={data.productInfo["style"]}
                         condition={data.productInfo["condition"]}
-                        buyerPickup={data.productInfo["buyerpickup"]}
+                        buyerpickup={data.productInfo["buyerpickup"]}
                         price={data.productInfo["price"]}
                         quantity={data.productInfo["quantity"]}
                         unit={data.productInfo["unit"]}

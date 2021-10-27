@@ -6,7 +6,7 @@ import { PAGEROUTES } from '../Config/config.json'
 
 
 function SellerHeaderBar() {
-    const [{ email }, dispatch] = useStateValue();
+    const [{ email }] = useStateValue();
 
     return (
         <div className="sellerheader">

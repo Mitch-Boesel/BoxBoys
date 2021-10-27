@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
 import SellerHeaderBar from '../../Components/SellerHeaderBar'
-import { Form, Button } from 'react-bootstrap';
-import { PAGEROUTES, BACKENDROUTES, VALIDATE, PRODUCT_CONFIG } from '../../Config/config.json';
+import { PAGEROUTES, BACKENDROUTES, VALIDATE } from '../../Config/config.json';
 import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
 import ProductForm from '../../Components/ProductForm';
 
 function AddProduct() {
-    const [{ sellerLoggedIn, sellerId }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn, sellerId }] = useStateValue();
 
     const [data, setState] = useState({
         category: "",
@@ -26,7 +25,8 @@ function AddProduct() {
         city: "",
         state: "",
         zipcode: "",
-        sameAddress: false
+        sameAddress: false,
+        buyerpickup: false
     });
 
 
@@ -120,7 +120,7 @@ function AddProduct() {
             "price": data.price.toString(),
             "quantity": data.quantity.toString(),
             "condition": data.condition.toString(),
-            "buyerpickup": data.buyerPickup.toString(),
+            "buyerpickup": data.buyerpickup.toString(),
             "description": data.description.toString(),
             "sameAddress": data.sameAddress.toString(),
             "address": data.address.toString(),

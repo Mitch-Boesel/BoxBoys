@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import './EditProductModal.css';
 import ProductForm from './ProductForm';
 
@@ -21,7 +20,8 @@ function EditProductModal(props) {
         city: props.productInfo.city,
         state: props.productInfo.state,
         zipcode: props.productInfo.zipcode,
-        buyerPickup: (props.productInfo.buyerpickup.toLowerCase() === 'true')
+        buyerpickup: (typeof props.productInfo.buyerpickup) === "boolean" ? props.productInfo.buyerpickup : (props.productInfo.buyerpickup.toLowerCase() === 'true'),
+        location: props.productInfo.location
     });
 
     const toggleOff = div => e => {

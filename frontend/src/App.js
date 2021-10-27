@@ -22,7 +22,7 @@ import { useStateValue } from './StateProvider'
 
 
 function App() {
-  const [{ email, sellerId, sellerLoggedIn }, dispatch] = useStateValue();
+  const [{ sellerLoggedIn }, dispatch] = useStateValue();
 
   useEffect(() => {
     (() => {

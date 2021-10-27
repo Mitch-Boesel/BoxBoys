@@ -3,7 +3,7 @@ import './SearchPage.css';
 import HeaderBar from "../../Components/HeaderBar";
 import { NavigationBar } from "../../Components/NavigationBar";
 import SearchCriteria from "../../Components/SearchCriteria";
-import { PAGEROUTES, BACKENDROUTES } from '../../Config/config.json';
+import { BACKENDROUTES } from '../../Config/config.json';
 import { Button } from 'react-bootstrap';
 import ProductCard from '../../Components/ProductCard';
 
@@ -33,10 +33,10 @@ function SearchPage(props) {
         const response = await fetch(getUrl);
 
         const responseData = await response.text();
-        if (response.status == 400) {
+        if (response.status === 400) {
             window.alert(responseData);
         }
-        else if (response.status == 200) {
+        else if (response.status === 200) {
             setState({ ...data, products: JSON.parse(responseData), hasLoaded: true })
         }
     }
@@ -57,7 +57,7 @@ function SearchPage(props) {
                         size={obj["size"]}
                         style={obj["style"]}
                         condition={obj["condition"]}
-                        buyerPickup={obj["buyerpickup"]}
+                        buyerpickup={obj["buyerpickup"]}
                         price={obj["price"]}
                         quantity={obj["quantity"]}
                         unit={obj["unit"]}

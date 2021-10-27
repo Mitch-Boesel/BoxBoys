@@ -4,23 +4,16 @@ import SellerHeaderBar from '../../Components/SellerHeaderBar'
 import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
 import { PAGEROUTES, BACKENDROUTES } from '../../Config/config.json';
-import ProductCard from '../../Components/ProductCard';
-import { Button } from 'react-bootstrap';
 import EditProductRow from '../../Components/EditProductRow';
 
 function EditProduct() {
-    const [{ sellerLoggedIn, sellerId }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn, sellerId }] = useStateValue();
     const [data, setState] = useState({
         products: {},
         hasLoaded: false,
         modal: false
     })
 
-    /*
-        useEffect(() => {
-            loadDataOnlyOnce();
-          }, []);
-    */
     useEffect(() => {
         (async () => {
             getProducts();
@@ -32,10 +25,10 @@ function EditProduct() {
         const response = await fetch(getUrl);
 
         const responseData = await response.text();
-        if (response.status == 400) {
+        if (response.status === 400) {
             window.alert(responseData);
         }
-        else if (response.status == 200) {
+        else if (response.status === 200) {
             setState({ ...data, products: JSON.parse(responseData), hasLoaded: true })
         }
     }

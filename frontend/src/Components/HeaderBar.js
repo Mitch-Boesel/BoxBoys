@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -10,7 +9,7 @@ import { useStateValue } from '../StateProvider'
 
 
 function HeaderBar() {
-    const [{ email, sellerId, sellerLoggedIn }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn }, dispatch] = useStateValue();
 
     const SellerLogout = () => {
         dispatch({

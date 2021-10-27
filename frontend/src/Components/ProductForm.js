@@ -20,7 +20,7 @@ function ProductForm(props) {
         city: props.data.city,
         state: props.data.state,
         zipcode: props.data.zipcode,
-        buyerPickup: props.data.buyerPickup,
+        buyerpickup: props.data.buyerpickup,
         sameAddress: false
     });
 
@@ -37,7 +37,29 @@ function ProductForm(props) {
     const onSubmit = e => {
         e.preventDefault();
         props.submit();
+        resetState();
+    }
 
+    const resetState = () => {
+        setState({
+            ...data,
+            category: "",
+            title: "",
+            brand: "",
+            manufacturer: "",
+            style: "",
+            size: "",
+            price: "",
+            quantity: "",
+            condition: "",
+            description: "",
+            address: "",
+            city: "",
+            state: "",
+            zipcode: "",
+            buyerpickup: false,
+            sameAddress: false
+        })
     }
     return (
         <Form>
@@ -83,7 +105,7 @@ function ProductForm(props) {
             </Form.Group>
             <Form.Group className="product_inputPair">
                 <Form.Label className="product_inputLabel">Buyer Can Pickup</Form.Label>
-                <Form.Check type='checkbox' onChange={handleCheckbox("buyerPickup")} checked={data.buyerPickup} className="product_inputValue" />
+                <Form.Check type='checkbox' onChange={handleCheckbox("buyerpickup")} checked={data.buyerpickup} className="product_inputValue" />
             </Form.Group>
 
             <Form.Group className="product_inputPair">
