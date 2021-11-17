@@ -15,14 +15,14 @@ namespace SellerAccountService.Controllers
 {
     [Route("api/mcc/seller-account")]
     [ApiController]
-    public class SellerAccountController : ControllerBase
+    public class SellerController : ControllerBase
     {
         public PgConnection PgConnection { get; }
         public DBTables DbTables { get; }
-        public ILogger<SellerAccountController> Logger { get; }
+        public ILogger<SellerController> Logger { get; }
         private PrimaryKeys PrimaryKeys { get; }
 
-        public SellerAccountController(PgConnection pg, DBTables dBAuth, ILogger<SellerAccountController> ilogger, PrimaryKeys pks)
+        public SellerController(PgConnection pg, DBTables dBAuth, ILogger<SellerController> ilogger, PrimaryKeys pks)
         {
             PgConnection = pg;
             DbTables = dBAuth;
@@ -42,7 +42,7 @@ namespace SellerAccountService.Controllers
                 if(bool.Parse(dataDict["sameAddress"]))
                 {
                     var sellerID = int.Parse(dataDict["sellerid"]);
-                    var sellerAddress = new GetSellerAccountAddress(PgConnection, DbTables, sellerID);
+                    var sellerAddress = new GetAddress(PgConnection, DbTables, sellerID);
                     dataDict["address"] = sellerAddress.FullAddress.Address;
                     dataDict["city"] = sellerAddress.FullAddress.City;
                     dataDict["state"] = sellerAddress.FullAddress.State;
@@ -70,6 +70,23 @@ namespace SellerAccountService.Controllers
             }
         }
 
+        [HttpPost("update-product")]
+        public IActionResult UpdateProduct([FromBody] JObject data)
+        {
+            var d = data.ToString();
+            var p = new Product(JsonConvert.DeserializeObject<Dictionary<string, string>>(d));
+            var updateQuery = new UpdateProduct(PgConnection, DbTables.Products, p);
+
+            if (updateQuery.Exception)
+            {
+                Logger.LogError("Update Product Failed");
+                return BadRequest("Update Product Failed:(");
+            }
+
+            return Ok();
+
+        }
+
         [HttpGet("number-products")]
         public IActionResult NumberOfProducts(string sellerid)
         {
@@ -77,7 +94,7 @@ namespace SellerAccountService.Controllers
             const string eMessage = "Getting Number of Products Failed:(";
             try
             {
-                var numProducts = new NumProductsForSeller(PgConnection, eMessage, int.Parse(sellerid), DbTables);
+                var numProducts = new NumProducts(PgConnection, eMessage, int.Parse(sellerid), DbTables);
                 if (numProducts.Exception)
                 {
                     Logger.LogWarning(eMessage);
@@ -90,6 +107,20 @@ namespace SellerAccountService.Controllers
                 Logger.LogWarning(eMessage);
                 return BadRequest(eMessage);
             }
+        }
+
+        [HttpGet("seller-products")]
+        public IActionResult GetSellerProducts(string sellerid)
+        {
+            Logger.LogInformation("HIT GetSellerProducts!");
+            var productQuery = new GetProducts(PgConnection, sellerid, DbTables.Products);
+
+            if (productQuery.Exception)
+            {
+                Logger.LogWarning($"Retrieving all products for seller {sellerid} failed:(");
+                return BadRequest();
+            }
+            return Ok(productQuery.ResultJson);
         }
 
         /*

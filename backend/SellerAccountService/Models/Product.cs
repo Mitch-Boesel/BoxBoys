@@ -49,5 +49,25 @@ namespace SellerAccountService.Models
             Buyerpickup = bool.Parse(pairs["buyerpickup"]);
             Description = pairs["description"];
         }
+
+        public Product(Dictionary<string, string> pairs)
+        {
+            ProductID = long.Parse(pairs["productid"]);
+            Category = pairs["category"];
+            Title = pairs["title"];
+            Brand = pairs["brand"];
+            Manufacturer = pairs["manufacturer"];
+            Price = double.Parse(pairs["price"]);
+            Size = pairs["size"];
+            Style = pairs["style"];
+            Address = pairs["address"];
+            City = pairs["city"];
+            State = pairs["state"];
+            ZipCode = pairs["zipcode"];
+            Quantity = pairs["quantity"];
+            Condition = pairs["condition"];
+            Buyerpickup = bool.Parse(pairs["buyerpickup"]);
+            Description = pairs["description"];
+        }
     }
 }
