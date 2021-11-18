@@ -15,10 +15,10 @@
         "SELLERORDERS": "./seller-account/seller-orders"
     },
     "BACKENDROUTES": {
-        "BASEURL_LOGINSERVICE": "https://localhost:5001/",
-        "BASEURL_ACCOUNTSERVICE": "https://localhost:5011/",
-        "BASEURL_UPDATESAVEDB": "https://localhost:5009/",
-        "BASEURL_SEARCHSERVICE": "https://localhost:5013/",
+        "BASEURL_LOGINSERVICE": "http://localhost:5000/",
+        "BASEURL_ACCOUNTSERVICE": "http://localhost:5010/",
+        "BASEURL_UPDATESAVEDB": "http://localhost:5008/",
+        "BASEURL_SEARCHSERVICE": "http://localhost:5012/",
         "SELLERSIGNUP": "api/mcc/accounts/seller-signup",
         "SELLERLOGIN": "api/mcc/accounts/seller-login",
         "ADDPRODUCT": "api/mcc/seller-account/new-product",
@@ -26,8 +26,8 @@
         "SAVE_DB": "api/mcc/db/write-to-local",
         "lOAD_DB": "api/mcc/db/read-from-local",
         "GET_SELLER_PRODUCTS": "api/mcc/seller-account/seller-products",
-        "UPDATE_SELLER_PRODUCT": "api/mcc/seller-account/update-product",
-        "GET_PRODUCTS": "api/mcc/search/get-products"
+        "GET_PRODUCTS": "api/mcc/search/get-products",
+        "UPDATE_SELLER_PRODUCT": "api/mcc/seller-account/update-product"
     },
     "VALIDATE": true,
     "PRODUCT_CONFIG": {

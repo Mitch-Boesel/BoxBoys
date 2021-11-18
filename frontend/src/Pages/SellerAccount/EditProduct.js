@@ -21,6 +21,7 @@ function EditProduct() {
     }, []);
 
     const getProducts = async () => {
+        debugger;
         const getUrl = BACKENDROUTES.BASEURL_ACCOUNTSERVICE + BACKENDROUTES.GET_SELLER_PRODUCTS + `?sellerid=${sellerId}`;
         const response = await fetch(getUrl);
 
