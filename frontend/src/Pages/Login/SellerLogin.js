@@ -38,10 +38,10 @@ function SellerLogin() {
 
         const response = await fetch(getUrl);
         const sellerId = await response.text();
-        if (response.status == 400) {
+        if (response.status === 400) {
             window.alert("Invalid Credentials:(")
         }
-        else if (response.status == 200) {
+        else if (response.status === 200) {
             debugger;
             window.alert("Login Successful!");
             setSellerCredentials(sellerId.toString());

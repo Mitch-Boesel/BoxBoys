@@ -16,10 +16,10 @@ function SellerContact(props) {
     }
 
     const validate = values => {
-        if (values.validate == true)
-            return ((values.contactFirstname.length != 0 &&
-                values.contactLastname.length != 0 &&
-                values.contactDob.length != 0 &&
+        if (values.validate === true)
+            return ((values.contactFirstname.length !== 0 &&
+                values.contactLastname.length !== 0 &&
+                values.contactDob.length !== 0 &&
                 values.phone.length >= 10 &&
                 values.phone.length <= 15 &&
                 validEmailRegex.test(values.email) &&
@@ -41,17 +41,17 @@ function SellerContact(props) {
                 <Form.Group className="contact_pair">
                     <Form.Label>Primary Contact Person First Name</Form.Label>
                     <Form.Control type='text' onChange={inputChange('contactFirstname')} value={values.contactFirstname} maxLength={maxLengths.FIRSTNAME} />
-                    {values.contactFirstname.length == 0 && <span className='errorMessage'>contact first name can't be blank</span>}
+                    {values.contactFirstname.length === 0 && <span className='errorMessage'>contact first name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Primary Contact Person Last Name</Form.Label>
                     <Form.Control type='text' onChange={inputChange('contactLastname')} value={values.contactLastname} maxLength={maxLengths.LASTNAME} />
-                    {values.contactLastname.length == 0 && <span className='errorMessage'>contact last name can't be blank</span>}
+                    {values.contactLastname.length === 0 && <span className='errorMessage'>contact last name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Date of Birth</Form.Label>
                     <Form.Control type='date' onChange={inputChange('contactDob')} value={values.contactDob} />
-                    {values.contactDob.length == 0 && <span className='errorMessage'>dob can't be blank</span>}
+                    {values.contactDob.length === 0 && <span className='errorMessage'>dob can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="contact_pair">
                     <Form.Label>Phone Number</Form.Label>

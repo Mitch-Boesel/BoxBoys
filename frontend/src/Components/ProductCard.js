@@ -38,7 +38,7 @@ function ProductCard(props) {
                         </div>
                         <div className="product_stats_row_item">
                             <div className="product_stats_row_item1">Pickup</div>
-                            <div className="product_stats_row_item2">{props.buyerPickup}</div>
+                            <div className="product_stats_row_item2">{props.buyerpickup}</div>
                         </div>
                     </div>
                     <div className="product_stats_row">

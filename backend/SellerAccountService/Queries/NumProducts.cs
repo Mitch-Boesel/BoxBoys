@@ -7,11 +7,11 @@ using SharedClasses;
 
 namespace SellerAccountService.Queries
 {
-    public class NumProductsForSeller : PgReadQuery
+    public class NumProducts : PgReadQuery
     {
         private int SellerID { get;}
         private DBTables Tables { get; }
-        public NumProductsForSeller(PgConnection pg, string eMessage, int sellerID, DBTables dBTables):base(pg,eMessage)
+        public NumProducts(PgConnection pg, string eMessage, int sellerID, DBTables dBTables):base(pg,eMessage)
         {
             SellerID = sellerID;
             Tables = dBTables;

@@ -25,20 +25,6 @@ namespace SearchService.Controllers
             Logger = ilogger;
         }
 
-        [HttpGet("seller-products")]
-        public IActionResult GetSellerProducts(string sellerid)
-        {
-            Logger.LogInformation("HIT GetSellerProducts!");
-            var productQuery = new GetSellerProducts(PgConnection, sellerid, DbTables.Products);
-
-            if (productQuery.Exception)
-            {
-                Logger.LogWarning($"Retrieving all products for seller {sellerid} failed:(");
-                return BadRequest();
-            }
-            return Ok(productQuery.ResultJson);
-        }
-
         [HttpGet("get-products")]
         public IActionResult GetProducts(string category)
         {

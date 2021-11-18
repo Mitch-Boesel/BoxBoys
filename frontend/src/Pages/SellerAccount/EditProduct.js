@@ -4,21 +4,16 @@ import SellerHeaderBar from '../../Components/SellerHeaderBar'
 import { useStateValue } from '../../StateProvider'
 import { Redirect } from 'react-router-dom';
 import { PAGEROUTES, BACKENDROUTES } from '../../Config/config.json';
-import ProductCard from '../../Components/ProductCard';
-import { Button } from 'react-bootstrap';
+import EditProductRow from '../../Components/EditProductRow';
 
 function EditProduct() {
-    const [{ sellerLoggedIn, sellerId }, dispatch] = useStateValue();
+    const [{ sellerLoggedIn, sellerId }] = useStateValue();
     const [data, setState] = useState({
         products: {},
-        hasLoaded: false
+        hasLoaded: false,
+        modal: false
     })
 
-    /*
-        useEffect(() => {
-            loadDataOnlyOnce();
-          }, []);
-    */
     useEffect(() => {
         (async () => {
             getProducts();
@@ -27,25 +22,32 @@ function EditProduct() {
 
     const getProducts = async () => {
         debugger;
-        const getUrl = BACKENDROUTES.BASEURL_SEARCHSERVICE + BACKENDROUTES.GET_SELLER_PRODUCTS + `?sellerid=${sellerId}`;
+        const getUrl = BACKENDROUTES.BASEURL_ACCOUNTSERVICE + BACKENDROUTES.GET_SELLER_PRODUCTS + `?sellerid=${sellerId}`;
         const response = await fetch(getUrl);
 
         const responseData = await response.text();
-        debugger;
-        if (response.status == 400) {
+        if (response.status === 400) {
             window.alert(responseData);
         }
-        else if (response.status == 200) {
+        else if (response.status === 200) {
             setState({ ...data, products: JSON.parse(responseData), hasLoaded: true })
         }
     }
 
+    const handleScroll = () => {
+        const current = data.modal;
+        setState({ ...data, modal: !current });
+    }
+
     const renderProducts = () => {
-        debugger;
         if (!data.hasLoaded)
-            return "empty"
+            return ""
         return Object.keys(data.products.data).map((key) => {
             var obj = data.products.data[key]
+            return (
+                <EditProductRow prodInfo={obj} handleScroll={handleScroll} />
+            )
+            /*
             return (
                 <div className="seller_product_row">
                     <div className="seller_product_edit">
@@ -64,7 +66,7 @@ function EditProduct() {
                         unit={obj["unit"]}
                         location={obj["location"]} />
                 </div>
-            )
+            )*/
         });
     }
 
@@ -89,6 +91,11 @@ function EditProduct() {
                 )
             });
         }*/
+    if (data.modal) {
+        document.body.classList.add('active-modal')
+    } else {
+        document.body.classList.remove('active-modal')
+    }
     return (
         <div>
             {sellerLoggedIn &&

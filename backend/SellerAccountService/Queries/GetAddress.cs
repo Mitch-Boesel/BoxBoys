@@ -7,12 +7,12 @@ using SharedClasses;
 
 namespace SellerAccountService.Queries
 {
-    public class GetSellerAccountAddress : PgReadQuery
+    public class GetAddress : PgReadQuery
     {
         private int SellerId { get; set; }
         private string Table { get; set; }
         public FullAddress FullAddress { get; set; }
-        public GetSellerAccountAddress(PgConnection pg, DBTables dBTables, int sellerId, string eMessage="An Error Occured Retrieving ") :base(pg,eMessage)
+        public GetAddress(PgConnection pg, DBTables dBTables, int sellerId, string eMessage="An Error Occured Retrieving ") :base(pg,eMessage)
         {
             Table = dBTables.SellerAccounts;
             SellerId = sellerId;

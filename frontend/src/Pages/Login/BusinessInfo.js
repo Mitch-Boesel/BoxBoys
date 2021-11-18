@@ -13,14 +13,14 @@ function BusinessInfo(props) {
     };
 
     const validate = values => {
-        if (values.validate == true)
-            return ((values.name.length != 0 &&
-                values.ein.length != 0 &&
-                values.address.length != 0 &&
-                values.city.length != 0 &&
-                values.state.length != 0 &&
-                values.zipcode.length != 0 &&
-                values.state.length != 0 &&
+        if (values.validate === true)
+            return ((values.name.length !== 0 &&
+                values.ein.length !== 0 &&
+                values.address.length !== 0 &&
+                values.city.length !== 0 &&
+                values.state.length !== 0 &&
+                values.zipcode.length !== 0 &&
+                values.state.length !== 0 &&
                 validateInteger(values.ein) &&
                 validateInteger(values.zipcode)) ? true : false);
         else
@@ -43,23 +43,23 @@ function BusinessInfo(props) {
                 <Form.Group className="business_pair" >
                     <Form.Label>Business Name</Form.Label>
                     <Form.Control type='text' onChange={inputChange('name')} value={values.name} maxLength={maxLengths.NAME} />
-                    {values.name.length == 0 && <span className='errorMessage'>Business Name can't be blank</span>}
+                    {values.name.length === 0 && <span className='errorMessage'>Business Name can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="business_pair" >
                     <Form.Label>Business Registration Number (EIN)</Form.Label>
                     <Form.Control type='text' onChange={inputChange('ein')} value={values.ein}></Form.Control>
-                    {values.ein.length == 0 && <span className='errorMessage'>EIN can't be blank</span>}
+                    {values.ein.length === 0 && <span className='errorMessage'>EIN can't be blank</span>}
                 </Form.Group>
                 <Form.Group className="business_pair" >
                     <Form.Label>Business Address</Form.Label>
                     <Form.Control type='address' onChange={inputChange('address')} value={values.address} maxLength={maxLengths.ADDRESS}></Form.Control>
-                    {values.address.length == 0 && <span className='errorMessage'>Address can't be blank</span>}
+                    {values.address.length === 0 && <span className='errorMessage'>Address can't be blank</span>}
                 </Form.Group>
                 <Form.Row>
                     <Form.Group className="business_pair" as={Col}>
                         <Form.Label>City</Form.Label>
                         <Form.Control onChange={inputChange('city')} value={values.city} maxLength={maxLengths.CITY} />
-                        {values.city.length == 0 && <span className='errorMessage'>City can't be blank</span>}
+                        {values.city.length === 0 && <span className='errorMessage'>City can't be blank</span>}
                     </Form.Group>
                     <Form.Group className="business_pair" as={Col} controlId="formGridState">
                         <Form.Label>State</Form.Label>
@@ -122,7 +122,7 @@ function BusinessInfo(props) {
                     <Form.Group className="business_pair" as={Col}>
                         <Form.Label>Zip</Form.Label>
                         <Form.Control onChange={inputChange('zipcode')} value={values.zipcode} />
-                        {values.zipcode.length == 0 && <span className='errorMessage'>zipcode can't be blank</span>}
+                        {values.zipcode.length === 0 && <span className='errorMessage'>zipcode can't be blank</span>}
                     </Form.Group>
                 </Form.Row>
                 <Button className="business_next" variant="primary" onClick={Continue(values)}>Continue</Button>
