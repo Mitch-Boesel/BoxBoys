@@ -71,3 +71,4 @@
 '72','2','11/04/2021 00:00:00','Corrugated','CV 5 kilo Gold Prize Top','PCA','PCA','1200.00','16.4375x12.6875x3.56','CV 5 Kilo Top','2334 Walle Lane','Omak','WA','98841','1200','OK','True','Ok'
 '73','2','11/04/2021 00:00:00','Corrugated','CV 5 Kilo Penguin Top','PCA','PCA','1200.00','16.4375x12.6875x3.56','CV 5 Kilo Top','2334 Walle Lane','Omak','WA','98841','1200','OK to Moderate','True','1200 to a unit'
 '74','2','11/04/2021 00:00:00','Corrugated','CV 5 Kilo Seahawk Top ','PCA','PCA','2400.00','16.4375x12.6875x3.56','CV 5 Kilo Top','2334 Walle Lane','Omak','WA','98841','2400','Good','True','2 total pallets'
+'75','2','11/09/2021 00:00:00','Corrugated','CV Cherry Tie Sheet','PCA','PCA','600.00','47x38.75x0','CV Cherry Tie Sheet','2334 Walle Lane','Omak','WA','98841','1200','Good','True','1200 to a unit'
