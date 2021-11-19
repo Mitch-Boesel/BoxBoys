@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import './SellerVerification.css'
 import { useStateValue } from '../../StateProvider'
+import { LOCALSTORAGE_KEYS } from '../../Config/config.json'
 
 function SellerVerification(props) {
     const { values, backendRoutes, pageRoutes, prevStep } = props;
@@ -17,6 +18,8 @@ function SellerVerification(props) {
             sellerId: val,
             loggedIn: true
         })
+        localStorage.setItem(LOCALSTORAGE_KEYS.EMAIL, values.email);
+        localStorage.setItem(LOCALSTORAGE_KEYS.SELLERID, val);
     }
     const onSubmit = async (values) => {
         const postUrl = backendRoutes.BASEURL_LOGINSERVICE + backendRoutes.SELLERSIGNUP;

@@ -7,6 +7,7 @@ import './Home.css';
 
 function HomePage() {
 
+    /*
     const onSave = async () => {
         const postUrl = BACKENDROUTES.BASEURL_UPDATESAVEDB + BACKENDROUTES.SAVE_DB;
         const requestOptions = {
@@ -27,6 +28,7 @@ function HomePage() {
         const response = await fetch(postUrl, requestOptions);
         window.alert("Database was successfully loaded!");
     }
+    
     return (
         <React.Fragment>
             <HeaderBar />
@@ -36,6 +38,14 @@ function HomePage() {
                 <Button className='update_btn' variant="primary" onClick={onSave}>SaveDb</Button>
                 <Button className='update_btn' variant="secondary" onClick={onLoad}>LoadDb</Button>
             </div>
+        </React.Fragment>
+    );*/
+
+    return (
+        <React.Fragment>
+            <HeaderBar />
+            <NavigationBar />
+            <div className="App"> This website is going to make Karl, Cade, and myself millions of dollars. BoxBoys to the moon</div >
         </React.Fragment>
     );
 }
