@@ -9,7 +9,7 @@
 .seller_products {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 85%;
     justify-content: right;
     margin: auto;
     background: #ffffff;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import './SellerVerification.css'
@@ -9,6 +9,11 @@ function SellerVerification(props) {
     const { values, backendRoutes, pageRoutes, prevStep } = props;
 
     const [{ loggedIn }, dispatch] = useStateValue();
+
+    const [data, setState] = useState({
+        accountCreated: false
+    })
+
 
 
     const setSellerCredentials = (val) => {
@@ -38,6 +43,7 @@ function SellerVerification(props) {
         else if (response.status === 200) {
             window.alert("Account Creation Successful!");
             setSellerCredentials(responseData);
+            setState({ accountCreated: true })
         }
     }
 
@@ -81,7 +87,7 @@ function SellerVerification(props) {
 
     return (
         <div>
-            {!loggedIn &&
+            {!data.accountCreated &&
                 <div className="verfication">
                     <h3 className="verfication_header">Verify Information</h3>
                     <div className="verification_pair">
@@ -125,6 +131,15 @@ function SellerVerification(props) {
                         <b className='verification_item2'> {values.contactDob}</b>
                     </div>
                     <div className="verification_pair">
+                        <p className='verification_item1'>Contact Email:</p>
+                        <b className='verification_item2'> {values.email}</b>
+                    </div>
+                    <div className="verification_pair">
+                        <p className='verification_item1'>Contact Phone Number:</p>
+                        <b className='verification_item2'> {values.phone}</b>
+                    </div>
+
+                    <div className="verification_pair">
                         <p className='verification_item1'>Is The Primary Contact the Owner?:</p>
                         <b className='verification_item2'> {values.name && "Yes"}{!values.name && "No"}</b>
                     </div>
@@ -166,7 +181,7 @@ function SellerVerification(props) {
                     </div>
 
                 </div>}
-            {loggedIn && <Redirect to={pageRoutes.SELLERACCOUNT} />}
+            {data.accountCreated && <Redirect to={pageRoutes.SELLERACCOUNT} />}
         </div>
     )
 }

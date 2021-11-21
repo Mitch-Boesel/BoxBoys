@@ -47,50 +47,9 @@ function EditProduct() {
             return (
                 <EditProductRow prodInfo={obj} handleScroll={handleScroll} />
             )
-            /*
-            return (
-                <div className="seller_product_row">
-                    <div className="seller_product_edit">
-                        <Button className="edit_button" variant="danger">Edit</Button>
-                    </div>
-
-                    <ProductCard title={obj["title"]}
-                        brand={obj["brand"]}
-                        manufacturer={obj["manufacturer"]}
-                        size={obj["size"]}
-                        style={obj["style"]}
-                        condition={obj["condition"]}
-                        buyerPickup={obj["buyerpickup"]}
-                        price={obj["price"]}
-                        quantity={obj["quantity"]}
-                        unit={obj["unit"]}
-                        location={obj["location"]} />
-                </div>
-            )*/
         });
     }
 
-    /*
-        const renderProducts = () => {
-            debugger;
-            if (!data.hasLoaded)
-                return "empty"
-            return Object.keys(data.products.data).map((key) => {
-                var obj = data.products.data[key]
-                return (
-                    <ProductCard title={obj["title"]}
-                        brand={obj["brand"]}
-                        manufacturer={obj["manufacturer"]}
-                        size={obj["size"]}
-                        style={obj["style"]}
-                        condition={obj["condition"]}
-                        pickup={obj["pickup"]}
-                        price={obj["price"]}
-                        quantity={obj["quantity"]}
-                        unit={obj["unit"]} />
-                )
-            });
-        }*/
     if (data.modal) {
         document.body.classList.add('active-modal')
     } else {

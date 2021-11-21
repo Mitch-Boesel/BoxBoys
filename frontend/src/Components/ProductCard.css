@@ -25,7 +25,7 @@
 
 .product_card_title {
     font-size: 20px;
-    text-align: left;
+    text-align: center;
     margin-left: 4%;
     margin-top: 10px;
     width: 100%;
@@ -34,6 +34,7 @@
 .product_stats {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .product_stats_row {
