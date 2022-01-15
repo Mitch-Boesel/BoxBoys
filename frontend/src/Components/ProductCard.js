@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductCard.css';
-import BlankPicture from '../Images/BlankPicture.JPG'
+import BlankPicture from '../Images/BlankPictureColor.JPG'
 
 function ProductCard(props) {
 

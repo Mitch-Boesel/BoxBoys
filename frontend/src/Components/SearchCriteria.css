@@ -7,11 +7,24 @@
     border-style: solid;
     border-top-right-radius: 10px;
     font-size: 20px;
-    width: 15%;
     margin-top: 10px;
+    height: 100%;
 }
-.seach_page_checkbox {
-    margin-top: 20px;
-    font-size: 17px;
+
+.search_criteria_category {
+    margin-top: 2%;
+    margin-bottom: 15%;
+    margin-left: 2%;
+}
+
+.search_criteria_label{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.search_criteria_checkbox {
     margin-left: 5px;
+    margin-bottom: 10%;
+    font-size: large;
 }

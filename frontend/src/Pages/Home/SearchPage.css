@@ -3,9 +3,23 @@
     flex-direction: row;
 }
 
-.search_page_products {
+.search_page_filter {
+    width: 15%;
+}
+
+.search_page_main {
     width: 70%;
     margin-left: 10%;
+}
+
+.search_page_sort {
+    padding-left: 83%;
+    margin-top: 5px;
+    margin-bottom: 5px;    
+}
+
+.search_page_products {
+
     justify-content: right;
     justify-items: right;
 }

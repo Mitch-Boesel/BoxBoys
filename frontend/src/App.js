@@ -27,7 +27,6 @@ function App() {
   useEffect(() => {
     (() => {
       if (!sellerLoggedIn) {
-        debugger;
         const sessionEmail = localStorage.getItem(LOCALSTORAGE_KEYS.EMAIL);
         const sessionSellerID = localStorage.getItem(LOCALSTORAGE_KEYS.SELLERID);
         if (sessionEmail != null && sessionSellerID != null)

@@ -1,7 +1,12 @@
 export const initialState = {
     loggedIn: false,
     email: "",
-    sellerId: ""
+    sellerId: "",
+    basket: [],
+    filterLowest: false,
+    filterClosest: false,
+    filterQuantity: false,
+    filterPickup: false
 };
 
 const reducer = (state, action) => {
@@ -29,7 +34,6 @@ const reducer = (state, action) => {
                 sellerLoggedIn: false,
                 sellerId: ""
             };
-
         default:
             return state;
     }
