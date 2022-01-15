@@ -29,6 +29,39 @@ namespace SearchService.Queries
             return sqlString;
         }
 
+        //public override object ExtractData(ref NpgsqlDataReader reader)
+        //{
+        //    var returnData = new Dictionary<string, object>();
+        //    returnData.Add("data", new Dictionary<string, Dictionary<string, string>>());
+        //    var count = 0;
+        //
+        //    while (reader.Read())
+        //    {
+        //        var dct = new Dictionary<string, string>();
+        //        dct.Add("productID", reader.GetValue(0).ToString());
+        //        dct.Add("title", reader.GetValue(1).ToString());
+        //        dct.Add("brand", reader.GetValue(2).ToString());
+        //        dct.Add("manufacturer", reader.GetValue(3).ToString());
+        //        dct.Add("size", reader.GetValue(4).ToString());
+        //        dct.Add("style", reader.GetValue(5).ToString());
+        //        dct.Add("condition", reader.GetValue(6).ToString());
+        //        dct.Add("buyerpickup", reader.GetValue(7).ToString());
+        //        dct.Add("price", reader.GetValue(8).ToString());
+        //        dct.Add("quantity", reader.GetValue(9).ToString());
+        //        dct.Add("location", $"{reader.GetValue(10)}, {reader.GetValue(11)}");
+        //
+        //        returnData["data"].Add(reader.GetValue(0).ToString(), dct);
+        //
+        //        count += 1;
+        //
+        //    }
+        //
+        //    returnData.Add("metrics", new Dictionary<string, string>());
+        //    returnData["metrics"].Add("products returned", count.ToString());
+        //
+        //    return ToJson(returnData);
+        //}
+
         public override object ExtractData(ref NpgsqlDataReader reader)
         {
             var returnData = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
