@@ -1,20 +1,11 @@
-import React, { useState } from 'react'
-//import { useStateValue } from '../StateProvider';
+import React from 'react'
 import { Form } from 'react-bootstrap';
 
 import './SearchCriteria.css'
 
 function SearchCriteria(props) {
-    //const [dispatch] = useStateValue();
     const { toggleCriteria, brands, manufacturers, styles, sizes } = props;
 
-
-    const [data, setState] = useState({
-        locationClosest: false,
-        lowestPrice: false,
-        quantity: false,
-        buyerpickup: false
-    });
 
     const handleCheckbox = (field, value) => e => {
         if (field === "buyerpickup") {
@@ -43,19 +34,19 @@ function SearchCriteria(props) {
                 </Form.Group>
                 {brands.size !== 0 &&
                     <Form.Group className="search_criteria_category">
-                        <Form.Label className="search_criteria_label">Brand</Form.Label>
+                        <Form.Label className="search_criteria_label">Brands</Form.Label>
                         {renderCheckBox("brand", brands)}
                     </Form.Group>
                 }
                 {manufacturers.size !== 0 &&
                     <Form.Group className="search_criteria_category">
-                        <Form.Label className="search_criteria_label">Manufacturer</Form.Label>
+                        <Form.Label className="search_criteria_label">Manufacturers</Form.Label>
                         {renderCheckBox("manufacturer", manufacturers)}
                     </Form.Group>
                 }
                 {styles.size !== 0 &&
                     <Form.Group className="search_criteria_category">
-                        <Form.Label className="search_criteria_label">Style</Form.Label>
+                        <Form.Label className="search_criteria_label">Styles</Form.Label>
                         {renderCheckBox("style", styles)}
                     </Form.Group>
                 }

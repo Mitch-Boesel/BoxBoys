@@ -214,6 +214,7 @@ function SearchPage(props) {
                 <div className="search_page_main">
                     <div className="search_page_sort">
                         <select onChange={sortProductsFromEvent}>
+                            <option selected disabled>Sort Results</option>
                             <option value="blank"> </option>
                             <option value='price'>Lowest Price</option>
                             <option value="closest">Closest</option>
