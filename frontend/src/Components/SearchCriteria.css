@@ -1,9 +1,10 @@
 .search_criteria {
     border-color: black;
-    border-top: 1.5px;
-    border-right: 1.5px;
+    border-top: 1px;
+    border-right: 1px;
     border-left: 0;
     border-bottom: 0;
+    border-color: gray;
     border-style: solid;
     border-top-right-radius: 10px;
     font-size: 20px;
@@ -13,18 +14,18 @@
 
 .search_criteria_category {
     margin-top: 2%;
-    margin-bottom: 15%;
-    margin-left: 2%;
+    margin-bottom: 5%;
+    margin-left: 7%;
 }
 
 .search_criteria_label{
-    font-size: 18px;
+    font-size: 15px;
     font-weight: bold;
     margin-bottom: 2%;
 }
 
 .search_criteria_checkbox {
-    margin-left: 5px;
-    margin-bottom: 10%;
-    font-size: 15px;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    font-size: 13px;
 }

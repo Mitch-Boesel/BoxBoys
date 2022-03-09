@@ -351,5 +351,6 @@ MigrationBackup/
 .ionide/
 
 # Personal Extras
-#appsettings.json
+*/appsettings.json
 Database/postgres_data
+*/appsettings.development.json

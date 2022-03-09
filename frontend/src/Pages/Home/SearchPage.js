@@ -205,6 +205,9 @@ function SearchPage(props) {
             <NavigationBar />
             <div className="search_page">
                 <div className="search_page_filter">
+                    <div className="search_page_title">
+                        {data.category} - {data.products.length} results
+                    </div>
                     <SearchCriteria toggleCriteria={filterProductsFromEvent}
                         brands={data.brands}
                         manufacturers={data.manufacturers}
@@ -212,6 +215,7 @@ function SearchPage(props) {
                         sizes={data.sizes} />
                 </div>
                 <div className="search_page_main">
+
                     <div className="search_page_sort">
                         <select onChange={sortProductsFromEvent}>
                             <option selected disabled>Sort Results</option>

@@ -3,19 +3,30 @@
     flex-direction: row;
 }
 
+.search_page_title {
+    height: 20px;
+    margin-bottom: 3.5px;
+    margin-top: 2.5px;
+    margin-left: 3%;
+    font-size: 17px;
+    font-style: unset;
+}
+
 .search_page_filter {
-    width: 15%;
+    width: 20%;
+    margin-top: 5px;
 }
 
 .search_page_main {
-    width: 70%;
-    margin-left: 10%;
+    width: 74%;
+    margin-left: 5%;
 }
 
 .search_page_sort {
     padding-left: 83%;
     margin-top: 5px;
-    margin-bottom: 5px;    
+    margin-bottom: 5px;
+    height: 25px;
 }
 
 .search_page_products {
